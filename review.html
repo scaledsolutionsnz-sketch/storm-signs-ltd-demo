@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leave a Review — Storm Signs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg:#040c1a; --accent:#00b4d8; --text:#e8f0ff; --muted:rgba(160,190,240,0.55); --border:rgba(0,180,216,0.18); }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;}
+    .card{background:rgba(8,22,48,0.9);border:1px solid var(--border);border-radius:16px;padding:3rem 2.5rem;max-width:480px;width:100%;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,0.5);}
+    .logo{height:48px;margin-bottom:2rem;filter:brightness(0)invert(1);}
+    h1{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;margin-bottom:0.75rem;}
+    p{color:var(--muted);font-size:0.93rem;line-height:1.7;margin-bottom:2.5rem;}
+    .stars{display:flex;justify-content:center;gap:1rem;}
+    .star-btn{background:none;border:none;font-size:3rem;cursor:pointer;transition:transform 0.2s,filter 0.2s;filter:grayscale(1);line-height:1;}
+    .star-btn:hover{transform:scale(1.25);filter:grayscale(0);}
+    .back{display:inline-block;margin-top:2rem;color:var(--muted);font-size:0.82rem;text-decoration:none;}
+    .back:hover{color:var(--accent);}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img class="logo" src="https://static.wixstatic.com/media/4591aa_e912de59ad8646e7832319f430d11e12~mv2.png" alt="Storm Signs" />
+    <h1>How did we do?</h1>
+    <p>Your feedback means everything. Tap the stars to rate your experience with Storm Signs.</p>
+    <div class="stars">
+      <button class="star-btn" onclick="rate(1)">⭐</button>
+      <button class="star-btn" onclick="rate(2)">⭐</button>
+      <button class="star-btn" onclick="rate(3)">⭐</button>
+      <button class="star-btn" onclick="rate(4)">⭐</button>
+      <button class="star-btn" onclick="rate(5)">⭐</button>
+    </div>
+    <a href="index.html" class="back">← Back to Storm Signs</a>
+  </div>
+  <script>
+    function rate(n) {
+      if (n >= 4) {
+        window.location.href = 'https://www.google.com/search?q=Storm+Signs+Christchurch+reviews';
+      } else {
+        window.location.href = 'private.html';
+      }
+    }
+  </script>
+</body>
+</html>

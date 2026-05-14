@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Storm Signs — Christchurch's Signage Experts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #040c1a;
+      --bg2: #060f22;
+      --card: rgba(8,22,48,0.85);
+      --accent: #00b4d8;
+      --accent2: #0077b6;
+      --glow: rgba(0,180,216,0.35);
+      --text: #e8f0ff;
+      --muted: rgba(160,190,240,0.55);
+      --border: rgba(0,180,216,0.18);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+    h1, h2, h3, h4 { font-family: 'Syne', sans-serif; }
+
+    /* ── ANNOUNCE BAR ── */
+    .announce {
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      color: #fff; text-align: center; padding: 0.5rem 1rem;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em;
+    }
+    .announce a { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 2.2rem; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between; padding: 0;
+      transition: background 0.3s, top 0.3s, box-shadow 0.3s;
+    }
+    nav.scrolled { top: 0; background: rgba(4,12,26,0.94); backdrop-filter: blur(18px); box-shadow: 0 2px 30px rgba(0,0,0,0.5); }
+    .nav-logo { padding: 1rem 1.5rem; display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .nav-logo img { height: 42px; filter: brightness(0) invert(1); }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+    .nav-links a { color: rgba(232,240,255,0.7); text-decoration: none; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-right { padding: 0 1.5rem; }
+    .nav-cta {
+      padding: 0.6rem 1.5rem; border: 1.5px solid var(--accent); color: var(--accent);
+      border-radius: 4px; font-size: 0.8rem; font-weight: 600; text-decoration: none;
+      letter-spacing: 0.06em; transition: all 0.2s; text-transform: uppercase;
+    }
+    .nav-cta:hover { background: var(--accent); color: #fff; box-shadow: 0 0 20px var(--glow); }
+    @media (max-width: 768px) { .nav-links { display: none; } }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center; overflow: hidden;
+    }
+    #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://static.wixstatic.com/media/4591aa_7216f20e0533476e9e721d9f9551d4fd~mv2.jpg');
+      background-size: cover; background-position: center;
+      opacity: 0.12;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1200px; margin: 0 auto; padding: 9rem 2rem 5rem; width: 100%;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before { content: ''; width: 32px; height: 1.5px; background: var(--accent); }
+    .hero h1 {
+      font-size: clamp(3.2rem, 7vw, 6.5rem); font-weight: 800;
+      line-height: 1.0; letter-spacing: -0.02em; color: #fff;
+      margin-bottom: 1.5rem; max-width: 800px;
+    }
+    .hero h1 .glow { color: var(--accent); text-shadow: 0 0 40px rgba(0,180,216,0.6); }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--muted); max-width: 520px;
+      line-height: 1.8; margin-bottom: 3rem; font-weight: 300;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 1rem 2.4rem; background: var(--accent); color: #fff;
+      border-radius: 4px; font-weight: 600; font-size: 0.9rem; text-decoration: none;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      transition: all 0.25s; box-shadow: 0 0 0 rgba(0,180,216,0);
+    }
+    .btn-primary:hover { background: #00d4f5; box-shadow: 0 8px 30px rgba(0,180,216,0.45); transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 1rem 2.4rem; border: 1.5px solid rgba(232,240,255,0.25); color: var(--text);
+      border-radius: 4px; font-weight: 500; font-size: 0.9rem; text-decoration: none;
+      letter-spacing: 0.05em; transition: all 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-badges {
+      display: flex; gap: 2.5rem; margin-top: 4rem; padding-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap;
+    }
+    .hero-badge { }
+    .hero-badge .num { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--accent); line-height: 1; }
+    .hero-badge .lbl { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap { background: var(--accent); overflow: hidden; padding: 0.85rem 0; }
+    .marquee-track { display: flex; width: max-content; animation: marquee 22s linear infinite; }
+    .marquee-track span { white-space: nowrap; padding: 0 2.5rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(4,12,26,0.85); }
+    .marquee-track span::after { content: '◆'; padding-left: 2.5rem; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── SERVICES ── */
+    .services { padding: 7rem 2rem; background: var(--bg2); }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 0.73rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin-bottom: 0.75rem; }
+    .section-title { font-size: clamp(2.2rem, 4.5vw, 3.5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1rem; }
+    .section-sub { font-size: 0.95rem; color: var(--muted); max-width: 520px; line-height: 1.75; }
+    .services-header { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: end; margin-bottom: 4rem; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    @media (max-width: 900px) { .services-grid { grid-template-columns: 1fr 1fr; } .services-header { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .services-grid { grid-template-columns: 1fr; } }
+    .service-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 2.25rem 2rem; cursor: default;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; inset: 0; opacity: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(0,180,216,0.08) 0%, transparent 70%);
+      transition: opacity 0.3s;
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,180,216,0.3); border-color: rgba(0,180,216,0.4); }
+    .service-card:hover::before { opacity: 1; }
+    .service-icon {
+      width: 54px; height: 54px; border-radius: 12px;
+      background: rgba(0,180,216,0.1); border: 1px solid rgba(0,180,216,0.22);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1.5rem;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .service-card:hover .service-icon { background: rgba(0,180,216,0.2); box-shadow: 0 0 16px rgba(0,180,216,0.3); }
+    .service-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem; color: #fff; }
+    .service-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── ABOUT ── */
+    .about { padding: 7rem 2rem; background: var(--bg); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 3rem; } }
+    .about-img-wrap { position: relative; }
+    .about-img {
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,180,216,0.15);
+    }
+    .about-img img { width: 100%; height: 480px; object-fit: cover; display: block; }
+    .about-badge {
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      background: var(--accent); color: #fff; padding: 1.25rem 1.5rem;
+      border-radius: 12px; font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 0.9rem; text-align: center; line-height: 1.2;
+      box-shadow: 0 8px 24px rgba(0,180,216,0.4);
+    }
+    .about-text p { color: var(--muted); margin-bottom: 1.25rem; font-size: 0.95rem; }
+    .about-clients { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 2rem; }
+    .client-pill {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.82rem; font-weight: 600; color: var(--accent);
+    }
+    .client-pill::before { content: '✦'; font-size: 0.6rem; }
+
+    /* ── GALLERY ── */
+    .gallery { padding: 7rem 2rem; background: var(--bg2); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 280px 280px;
+      gap: 10px; border-radius: 12px; overflow: hidden; margin-top: 3rem;
+    }
+    .g1 { grid-row: 1 / 3; }
+    .gallery-item { overflow: hidden; position: relative; cursor: pointer; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .gallery-item::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,180,216,0.15), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .gallery-item:hover::after { opacity: 1; }
+    @media (max-width: 768px) { .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; } .g1 { grid-row: auto; } }
+
+    /* ── STATS ── */
+    .stats { padding: 5rem 2rem; background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
+    @media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+    .stat-item .num { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; color: #fff; line-height: 1; }
+    .stat-item .lbl { font-size: 0.82rem; color: rgba(255,255,255,0.75); margin-top: 0.4rem; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* ── REVIEWS ── */
+    .reviews { padding: 7rem 2rem; background: var(--bg); }
+    .reviews-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3.5rem; flex-wrap: wrap; gap: 2rem; }
+    .rating-num { font-family: 'Syne', sans-serif; font-size: 5rem; font-weight: 800; color: #fff; line-height: 1; }
+    .rating-stars { color: #fbbf24; font-size: 1.2rem; margin-top: 0.25rem; }
+    .rating-label { font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.07em; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .review-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 2rem; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .review-card:hover { border-color: rgba(0,180,216,0.35); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+    .review-stars { color: #fbbf24; font-size: 0.9rem; margin-bottom: 1rem; }
+    .review-text { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; font-style: italic; }
+    .review-author { display: flex; align-items: center; gap: 0.75rem; }
+    .review-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; color: #fff; flex-shrink: 0; }
+    .review-name { font-weight: 600; font-size: 0.88rem; color: #fff; }
+    .review-date { font-size: 0.73rem; color: var(--muted); }
+    .reviews-cta { text-align: center; margin-top: 3rem; }
+
+    /* ── CONTACT ── */
+    .contact { padding: 7rem 2rem; background: var(--bg2); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 5rem; align-items: start; }
+    @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; gap: 3rem; } }
+    .contact-info p { color: var(--muted); font-size: 0.95rem; margin: 1rem 0 2.5rem; line-height: 1.75; }
+    .contact-detail { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; font-size: 0.9rem; color: var(--text); }
+    .contact-detail-icon {
+      width: 42px; height: 42px; background: rgba(0,180,216,0.1);
+      border: 1px solid rgba(0,180,216,0.22); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
+    }
+    .contact-form-wrap {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 2.5rem;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+    .form-group { margin-bottom: 1rem; }
+    label { display: block; font-size: 0.72rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+    input, select, textarea {
+      width: 100%; padding: 0.82rem 1rem;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; color: var(--text); font-size: 0.9rem;
+      font-family: 'Inter', sans-serif; outline: none; appearance: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    input::placeholder, textarea::placeholder { color: rgba(160,190,240,0.3); }
+    select option { background: var(--bg2); }
+    input:focus, select:focus, textarea:focus { border-color: var(--accent); background: rgba(0,180,216,0.05); }
+    textarea { min-height: 120px; resize: vertical; }
+    .form-submit {
+      width: 100%; padding: 1rem; background: var(--accent); color: #fff;
+      border: none; border-radius: 8px; font-size: 0.9rem; font-weight: 700;
+      font-family: 'Inter', sans-serif; cursor: pointer; letter-spacing: 0.06em;
+      text-transform: uppercase; margin-top: 0.5rem;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+    }
+    .form-submit:hover { background: #00d4f5; box-shadow: 0 8px 28px rgba(0,180,216,0.4); transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    footer { background: #020810; padding: 3.5rem 2rem; border-top: 1px solid rgba(0,180,216,0.1); }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-logo img { height: 36px; filter: brightness(0) invert(1); opacity: 0.8; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { color: rgba(232,240,255,0.3); text-decoration: none; font-size: 0.8rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { color: rgba(232,240,255,0.2); font-size: 0.73rem; }
+
+    /* ── ANIMATIONS ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; } .d4 { transition-delay: 0.4s; } .d5 { transition-delay: 0.5s; }
+
+    /* Glowing line divider */
+    .glow-line { width: 60px; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); margin-bottom: 1.5rem; border-radius: 2px; }
+  </style>
+</head>
+<body>
+
+  <div class="announce">
+    Military-grade precision. Christchurch-built. — <a href="#contact">Get a Free Quote Today</a>
+  </div>
+
+  <nav id="navbar">
+    <a href="#" class="nav-logo">
+      <img src="https://static.wixstatic.com/media/4591aa_e912de59ad8646e7832319f430d11e12~mv2.png" alt="Storm Signs logo" />
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#gallery">Work</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a href="#contact" class="nav-cta">Get a Quote</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Christchurch's Signage Experts</div>
+      <h1>Your Vision.<br /><span class="glow">Our Mission.</span><br />We're Ready.</h1>
+      <p class="hero-sub">From bold exterior branding to precision vehicle wraps — Storm Signs delivers military-grade craftsmanship for every project, every time.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Get a Free Quote →</a>
+        <a href="#gallery" class="btn-ghost">View Our Work</a>
+      </div>
+      <div class="hero-badges">
+        <div class="hero-badge"><div class="num counter" data-target="3">0</div><div class="lbl">Years in Business</div></div>
+        <div class="hero-badge"><div class="num counter" data-target="150">0</div><div class="lbl">Projects Delivered</div></div>
+        <div class="hero-badge"><div class="num counter" data-target="5">0</div><div class="lbl">Star Rated</div></div>
+        <div class="hero-badge"><div class="num">NZ</div><div class="lbl">Defence Force Approved</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>Interior Signage</span><span>Exterior Signage</span><span>Vehicle Wraps</span>
+      <span>Event Signage</span><span>Custom Solutions</span><span>Fleet Branding</span>
+      <span>Wayfinding</span><span>Wall Graphics</span><span>Building Branding</span>
+      <span>Interior Signage</span><span>Exterior Signage</span><span>Vehicle Wraps</span>
+      <span>Event Signage</span><span>Custom Solutions</span><span>Fleet Branding</span>
+      <span>Wayfinding</span><span>Wall Graphics</span><span>Building Branding</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="services-header">
+        <div>
+          <div class="glow-line reveal"></div>
+          <p class="section-label reveal">What We Do</p>
+          <h2 class="section-title reveal d1">Signage Built<br />to Last</h2>
+        </div>
+        <p class="section-sub reveal d2">From a single storefront sign to a full fleet wrap — we handle every scale with the same level of precision and care.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon">🏢</div>
+          <h3>Interior Signage</h3>
+          <p>Office signs, wall graphics, wayfinding systems — we make your interior communicate your brand from the moment people walk in.</p>
+        </div>
+        <div class="service-card reveal d1">
+          <div class="service-icon">🏗️</div>
+          <h3>Exterior Signage</h3>
+          <p>Storefront fascias, building branding, outdoor displays — bold, weatherproof signage that gets you noticed from the street.</p>
+        </div>
+        <div class="service-card reveal d2">
+          <div class="service-icon">🚐</div>
+          <h3>Vehicle Wraps</h3>
+          <p>Full wraps, partial graphics, fleet branding — turn your vehicles into mobile billboards that work for you 24/7.</p>
+        </div>
+        <div class="service-card reveal d1">
+          <div class="service-icon">🎪</div>
+          <h3>Event Signage</h3>
+          <p>Banners, backdrops, pop-up displays — professional event signage delivered fast, built to impress at any scale.</p>
+        </div>
+        <div class="service-card reveal d2">
+          <div class="service-icon">⚙️</div>
+          <h3>Specialist Signage</h3>
+          <p>Airport, hospital, government, and education sector expertise. We understand compliance, durability, and high-foot-traffic demands.</p>
+        </div>
+        <div class="service-card reveal d3">
+          <div class="service-icon">✏️</div>
+          <h3>Custom Design</h3>
+          <p>No templates, no shortcuts. Every project starts with your brief and ends with something uniquely yours — designed in-house.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrap reveal">
+          <div class="about-img">
+            <img src="https://static.wixstatic.com/media/4591aa_cd9cba1235fb4384a7d0478bdefcf701~mv2.jpg" alt="Storm Signs work" loading="lazy" />
+          </div>
+          <div class="about-badge">Founded<br /><span style="font-size:1.8rem;">2022</span></div>
+        </div>
+        <div class="about-text">
+          <div class="glow-line reveal"></div>
+          <p class="section-label reveal">About Storm Signs</p>
+          <h2 class="section-title reveal d1">Precision-Driven.<br />Mission-Ready.</h2>
+          <p class="reveal d2">Storm Signs was founded by Aaron Hoeflich — a serving New Zealand Army Sergeant — who brought the discipline, precision, and accountability of military service into the world of signage.</p>
+          <p class="reveal d2">Based in Rolleston, Christchurch, we've built a reputation for delivering on time, on brief, and above expectation for clients ranging from local businesses to national organisations.</p>
+          <div class="about-clients reveal d3">
+            <p style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.75rem;">Trusted by</p>
+            <div class="client-pill">New Zealand Defence Force</div>
+            <div class="client-pill">Air New Zealand</div>
+            <div class="client-pill">Corde Construction</div>
+            <div class="client-pill">Rolleston & Christchurch Businesses</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="glow-line reveal"></div>
+      <p class="section-label reveal">Our Work</p>
+      <h2 class="section-title reveal d1">Built to be Seen</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item g1">
+          <img src="https://static.wixstatic.com/media/4591aa_3cb900a435df44bfbdcab20215e251f9~mv2.png" alt="Storm Signs showcase" loading="lazy" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://static.wixstatic.com/media/4591aa_4d7671b632134d7b9fc04d8f5a62d5e2~mv2.jpg" alt="Interior signage" loading="lazy" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://static.wixstatic.com/media/4591aa_972a5b73f9e54b49a0fd93ef0bdcf89c~mv2.jpg" alt="Wall signage" loading="lazy" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://static.wixstatic.com/media/4591aa_6522a197d70e47dcb1784a54492cd219~mv2.webp" alt="Event signage" loading="lazy" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://static.wixstatic.com/media/4591aa_66486c5d8cc141eaa20b5d9bad3e7c22~mv2.jpg" alt="Free-standing banner" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <div class="num"><span class="counter" data-target="150">0</span>+</div>
+          <div class="lbl">Projects Completed</div>
+        </div>
+        <div class="stat-item reveal d1">
+          <div class="num"><span class="counter" data-target="100">0</span>%</div>
+          <div class="lbl">On-Time Delivery</div>
+        </div>
+        <div class="stat-item reveal d2">
+          <div class="num"><span class="counter" data-target="3">0</span></div>
+          <div class="lbl">High-Profile Clients</div>
+        </div>
+        <div class="stat-item reveal d3">
+          <div class="num">5★</div>
+          <div class="lbl">Google Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <div class="reviews-header">
+        <div>
+          <div class="glow-line reveal"></div>
+          <p class="section-label reveal">Customer Reviews</p>
+          <h2 class="section-title reveal d1">What Clients Say</h2>
+        </div>
+        <div class="reveal d2" style="text-align:right;">
+          <div class="rating-num">5.0</div>
+          <div class="rating-stars">★★★★★</div>
+          <div class="rating-label">Google Reviews</div>
+        </div>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Exceptional service and craftsmanship. Aaron and the team at Storm Signs went above and beyond — the final result looked incredible and was delivered ahead of schedule."</p>
+          <div class="review-author"><div class="review-avatar">JB</div><div><div class="review-name">John B.</div><div class="review-date">Rolleston, Christchurch</div></div></div>
+        </div>
+        <div class="review-card reveal d1">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Professional from start to finish. The vehicle wrap they did for our fleet was flawless — precise, clean, and exactly what we envisioned. Highly recommended."</p>
+          <div class="review-author"><div class="review-avatar">SK</div><div><div class="review-name">Sarah K.</div><div class="review-date">Christchurch</div></div></div>
+        </div>
+        <div class="review-card reveal d2">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Storm Signs handled our entire office fit-out signage with incredible attention to detail. The wayfinding system they designed is both functional and stunning."</p>
+          <div class="review-author"><div class="review-avatar">MT</div><div><div class="review-name">Mark T.</div><div class="review-date">Canterbury</div></div></div>
+        </div>
+      </div>
+      <div class="reviews-cta reveal">
+        <a href="review.html" class="btn-primary" style="margin:0 auto;display:inline-flex;">⭐ Leave a Review</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <div class="glow-line reveal"></div>
+          <p class="section-label reveal">Get In Touch</p>
+          <h2 class="section-title reveal d1">Ready to Start<br />Your Project?</h2>
+          <p class="contact-info reveal d2">Tell us about your signage needs and we'll come back with a fast, competitive quote. No obligation — just straight answers from people who know the craft.</p>
+          <div class="reveal d3">
+            <div class="contact-detail"><div class="contact-detail-icon">📍</div><span>5/25 Hynds Drive, Rolleston, Christchurch 7614</span></div>
+            <div class="contact-detail"><div class="contact-detail-icon">📞</div><span>0276 666 786</span></div>
+            <div class="contact-detail"><div class="contact-detail-icon">✉️</div><span>aaron@stormsigns.co.nz</span></div>
+          </div>
+        </div>
+        <div class="contact-form-wrap reveal d2">
+          <form action="https://api.staticforms.xyz/submit" method="post">
+            <input type="hidden" name="apiKey" value="sf_768da8d33927e7f4f241d0a6" />
+            <div class="form-row">
+              <div class="form-group"><label>First Name</label><input type="text" name="firstName" placeholder="First name" required /></div>
+              <div class="form-group"><label>Last Name</label><input type="text" name="lastName" placeholder="Last name" required /></div>
+            </div>
+            <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="your@email.com" required /></div>
+            <div class="form-group"><label>Phone</label><input type="tel" name="phone" placeholder="Your phone number" /></div>
+            <div class="form-group">
+              <label>Service Required</label>
+              <select name="service" required>
+                <option value="" disabled selected>What do you need?</option>
+                <option value="interior">Interior Signage</option>
+                <option value="exterior">Exterior Signage</option>
+                <option value="vehicle">Vehicle Wraps & Graphics</option>
+                <option value="event">Event Signage</option>
+                <option value="specialist">Specialist Signage</option>
+                <option value="custom">Custom Design</option>
+                <option value="other">Other / Not Sure</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Project Details</label><textarea name="message" placeholder="Tell us about your project, size, timeline, and anything else relevant…" required></textarea></div>
+            <button type="submit" class="form-submit">Send Enquiry →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="https://static.wixstatic.com/media/4591aa_e912de59ad8646e7832319f430d11e12~mv2.png" alt="Storm Signs" />
+      </div>
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Work</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-copy">© 2025 Storm Signs Ltd, Rolleston, Christchurch</div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Nav scroll ──
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+    // ── Scroll reveal ──
+    const obs = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    }), { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // ── Counter animation ──
+    const counters = document.querySelectorAll('.counter');
+    const counterObs = new IntersectionObserver(entries => entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, target = parseInt(el.dataset.target);
+      let start = 0;
+      const step = target / 60;
+      const tick = () => {
+        start = Math.min(start + step, target);
+        el.textContent = Math.floor(start);
+        if (start < target) requestAnimationFrame(tick);
+      };
+      tick();
+      counterObs.unobserve(el);
+    }), { threshold: 0.5 });
+    counters.forEach(c => counterObs.observe(c));
+
+    // ── Hero canvas particles ──
+    (function() {
+      const canvas = document.getElementById('hero-canvas');
+      const ctx = canvas.getContext('2d');
+      let W, H, particles = [];
+
+      function resize() {
+        W = canvas.width = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      class Particle {
+        constructor() { this.reset(); }
+        reset() {
+          this.x = Math.random() * W;
+          this.y = Math.random() * H;
+          this.vx = (Math.random() - 0.5) * 0.4;
+          this.vy = (Math.random() - 0.5) * 0.4;
+          this.r = Math.random() * 1.5 + 0.5;
+          this.alpha = Math.random() * 0.5 + 0.1;
+        }
+        update() {
+          this.x += this.vx; this.y += this.vy;
+          if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(0,180,216,${this.alpha})`;
+          ctx.fill();
+        }
+      }
+
+      for (let i = 0; i < 120; i++) particles.push(new Particle());
+
+      function drawConnections() {
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 100) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(0,180,216,${0.08 * (1 - dist / 100)})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, W, H);
+        drawConnections();
+        particles.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+
+    // ── Service card 3D tilt ──
+    document.querySelectorAll('.service-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `translateY(-5px) rotateX(${-y * 6}deg) rotateY(${x * 6}deg)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+        card.style.transition = 'transform 0.5s ease';
+        setTimeout(() => card.style.transition = '', 500);
+      });
+    });
+  </script>
+</body>
+</html>
