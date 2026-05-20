@@ -85,7 +85,7 @@ body.shaking{animation:bodyShake 0.26s ease}
 @keyframes cardGlow{0%,100%{box-shadow:0 0 0 1px var(--accent),0 0 20px rgba(139,45,245,0.35)}50%{box-shadow:0 0 0 1px var(--accent),0 0 38px rgba(139,45,245,0.58)}}
 .vc-check{position:absolute;top:9px;right:9px;width:21px;height:21px;background:var(--accent);border-radius:50%;display:none;align-items:center;justify-content:center;font-size:11px;color:#fff}
 .vehicle-card.selected .vc-check{display:flex}
-.vehicle-card svg{width:100%;height:72px;margin-bottom:10px}
+.vehicle-card svg{width:100%;height:90px;margin-bottom:10px}
 .vc-label{font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.05em;color:var(--text)}
 
 /* Style tiles */
@@ -215,16 +215,46 @@ footer a:hover{color:var(--hot)}
       <!-- UTE -->
       <div class="vehicle-card" data-vehicle="Ute" tabindex="0" role="button" aria-label="Select Ute">
         <div class="vc-check">&#10003;</div>
-        <svg viewBox="0 0 280 88" xmlns="http://www.w3.org/2000/svg">
-          <path class="vehicle-body" d="M16 72 L16 54 L100 54 L100 36 L114 21 L194 19 L214 24 L228 42 L244 52 L264 52 L264 72 Z" fill="#3a3a4a" stroke="rgba(139,45,245,0.4)" stroke-width="1.5"/>
-          <path d="M118 23 L118 40 L212 40 L212 25 Z" fill="rgba(100,160,220,0.2)" stroke="rgba(139,45,245,0.28)" stroke-width="1"/>
-          <line x1="100" y1="54" x2="100" y2="72" stroke="rgba(139,45,245,0.35)" stroke-width="1.5"/>
-          <rect x="258" y="56" width="7" height="14" rx="1" fill="rgba(139,45,245,0.28)"/>
-          <circle cx="54" cy="72" r="17" fill="#16102a" stroke="rgba(139,45,245,0.45)" stroke-width="1.5"/>
-          <circle cx="54" cy="72" r="9" fill="#0a0815" stroke="rgba(139,45,245,0.22)" stroke-width="1"/>
-          <circle cx="216" cy="72" r="17" fill="#16102a" stroke="rgba(139,45,245,0.45)" stroke-width="1.5"/>
-          <circle cx="216" cy="72" r="9" fill="#0a0815" stroke="rgba(139,45,245,0.22)" stroke-width="1"/>
-          <line x1="8" y1="89" x2="272" y2="89" stroke="rgba(139,45,245,0.13)" stroke-width="1"/>
+        <svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="bshadow-u" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(0,0,0,0.0)"/><stop offset="100%" stop-color="rgba(0,0,0,0.35)"/></linearGradient></defs>
+          <!-- Body -->
+          <path class="vehicle-body" d="M 22 124 L 24 108 C 25 104,28 101,31 100 L 31 87 C 31 83,33 82,37 82 L 152 82 L 155 77 L 158 62 C 161 52,171 48,183 47 L 218 47 C 230 47,238 49,244 53 C 251 57,256 66,260 74 C 265 80,283 83,302 83 C 320 83,346 85,360 88 C 370 92,375 100,376 110 C 377 117,376 121,373 124 Z" fill="#3c3c4e"/>
+          <!-- Body shading -->
+          <path d="M 22 124 L 24 108 C 25 104,28 101,31 100 L 31 87 C 31 83,33 82,37 82 L 152 82 L 155 77 L 158 62 C 161 52,171 48,183 47 L 218 47 C 230 47,238 49,244 53 C 251 57,256 66,260 74 C 265 80,283 83,302 83 C 320 83,346 85,360 88 C 370 92,375 100,376 110 C 377 117,376 121,373 124 Z" fill="url(#bshadow-u)" opacity="0.4"/>
+          <!-- Rear cab window -->
+          <path d="M 160 64 C 163 54,173 49,185 48 L 193 48 L 191 70 L 162 72 Z" fill="rgba(120,185,255,0.18)" stroke="rgba(139,45,245,0.28)" stroke-width="0.8"/>
+          <!-- Main side window -->
+          <path d="M 197 48 L 239 48 L 245 54 L 250 70 L 197 70 Z" fill="rgba(120,185,255,0.18)" stroke="rgba(139,45,245,0.28)" stroke-width="0.8"/>
+          <!-- B-pillar -->
+          <line x1="194" y1="48" x2="196" y2="70" stroke="rgba(0,0,0,0.45)" stroke-width="2.5"/>
+          <!-- A-pillar -->
+          <line x1="241" y1="48" x2="247" y2="54" stroke="rgba(0,0,0,0.45)" stroke-width="2.5"/>
+          <!-- C-pillar -->
+          <line x1="158" y1="63" x2="160" y2="72" stroke="rgba(0,0,0,0.35)" stroke-width="2"/>
+          <!-- Door gap rear -->
+          <line x1="156" y1="82" x2="157" y2="124" stroke="rgba(0,0,0,0.35)" stroke-width="1.5"/>
+          <!-- Door gap cab -->
+          <line x1="195" y1="70" x2="196" y2="124" stroke="rgba(0,0,0,0.35)" stroke-width="1.5"/>
+          <!-- Door gap front -->
+          <line x1="246" y1="56" x2="248" y2="124" stroke="rgba(0,0,0,0.3)" stroke-width="1.5"/>
+          <!-- Bed rail highlight -->
+          <line x1="37" y1="82" x2="153" y2="82" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+          <!-- Side mirror -->
+          <path d="M 247 58 L 262 57 L 262 66 L 247 67 Z" fill="#28283a" stroke="rgba(139,45,245,0.2)" stroke-width="0.8"/>
+          <!-- Front light -->
+          <rect x="367" y="94" width="7" height="16" rx="2" fill="rgba(255,240,140,0.45)" stroke="rgba(255,240,140,0.2)" stroke-width="0.5"/>
+          <!-- Rear light -->
+          <rect x="24" y="94" width="5" height="16" rx="1" fill="rgba(220,50,50,0.45)" stroke="rgba(220,50,50,0.2)" stroke-width="0.5"/>
+          <!-- Bumper detail -->
+          <path d="M 370 103 C 374 100,376 105,375 110" stroke="rgba(255,255,255,0.12)" stroke-width="1" fill="none"/>
+  <circle cx="100" cy="110" r="24" fill="#100d1e" stroke="rgba(120,60,220,0.6)" stroke-width="1.5"/>
+  <circle cx="100" cy="110" r="14" fill="#080712" stroke="rgba(100,50,180,0.3)" stroke-width="1"/>
+  <circle cx="100" cy="110" r="5" fill="rgba(139,45,245,0.5)"/>
+  <circle cx="300" cy="110" r="24" fill="#100d1e" stroke="rgba(120,60,220,0.6)" stroke-width="1.5"/>
+  <circle cx="300" cy="110" r="14" fill="#080712" stroke="rgba(100,50,180,0.3)" stroke-width="1"/>
+  <circle cx="300" cy="110" r="5" fill="rgba(139,45,245,0.5)"/>
+          <!-- Ground shadow -->
+          <ellipse cx="200" cy="136" rx="170" ry="3.5" fill="rgba(0,0,0,0.3)"/>
         </svg>
         <div class="vc-label">Ute</div>
       </div>
@@ -232,16 +262,45 @@ footer a:hover{color:var(--hot)}
       <!-- SUV -->
       <div class="vehicle-card" data-vehicle="SUV" tabindex="0" role="button" aria-label="Select SUV">
         <div class="vc-check">&#10003;</div>
-        <svg viewBox="0 0 280 88" xmlns="http://www.w3.org/2000/svg">
-          <path class="vehicle-body" d="M20 72 L20 48 L36 28 L58 20 L222 20 L242 28 L258 46 L262 52 L264 72 Z" fill="#3a3a4a" stroke="rgba(139,45,245,0.4)" stroke-width="1.5"/>
-          <path d="M60 22 L38 44 L96 44 L96 22 Z" fill="rgba(100,160,220,0.2)" stroke="rgba(139,45,245,0.28)" stroke-width="1"/>
-          <rect x="100" y="22" width="66" height="22" rx="1" fill="rgba(100,160,220,0.18)" stroke="rgba(139,45,245,0.25)" stroke-width="1"/>
-          <rect x="170" y="22" width="50" height="22" rx="1" fill="rgba(100,160,220,0.18)" stroke="rgba(139,45,245,0.25)" stroke-width="1"/>
-          <circle cx="64" cy="72" r="18" fill="#16102a" stroke="rgba(139,45,245,0.45)" stroke-width="1.5"/>
-          <circle cx="64" cy="72" r="10" fill="#0a0815" stroke="rgba(139,45,245,0.22)" stroke-width="1"/>
-          <circle cx="216" cy="72" r="18" fill="#16102a" stroke="rgba(139,45,245,0.45)" stroke-width="1.5"/>
-          <circle cx="216" cy="72" r="10" fill="#0a0815" stroke="rgba(139,45,245,0.22)" stroke-width="1"/>
-          <line x1="8" y1="89" x2="272" y2="89" stroke="rgba(139,45,245,0.13)" stroke-width="1"/>
+        <svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="bshadow-s" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(0,0,0,0.0)"/><stop offset="100%" stop-color="rgba(0,0,0,0.35)"/></linearGradient></defs>
+          <!-- Body -->
+          <path class="vehicle-body" d="M 22 124 L 24 108 C 25 104,28 101,32 100 C 34 97,36 94,37 91 L 37 40 C 37 36,41 34,47 34 L 334 34 C 340 34,345 37,348 43 L 354 57 C 357 65,362 76,366 87 C 370 97,374 107,376 114 C 377 119,376 122,373 124 Z" fill="#3c3c4e"/>
+          <!-- Body shading -->
+          <path d="M 22 124 L 24 108 C 25 104,28 101,32 100 C 34 97,36 94,37 91 L 37 40 C 37 36,41 34,47 34 L 334 34 C 340 34,345 37,348 43 L 354 57 C 357 65,362 76,366 87 C 370 97,374 107,376 114 C 377 119,376 122,373 124 Z" fill="url(#bshadow-s)" opacity="0.4"/>
+          <!-- Rear quarter window -->
+          <path d="M 50 37 L 106 37 L 104 78 L 50 78 Z" fill="rgba(120,185,255,0.18)" stroke="rgba(139,45,245,0.28)" stroke-width="0.8"/>
+          <!-- Rear door window -->
+          <path d="M 112 37 L 194 37 L 194 78 L 112 78 Z" fill="rgba(120,185,255,0.18)" stroke="rgba(139,45,245,0.28)" stroke-width="0.8"/>
+          <!-- Front door window -->
+          <path d="M 200 37 L 318 37 L 322 44 L 322 78 L 200 78 Z" fill="rgba(120,185,255,0.18)" stroke="rgba(139,45,245,0.28)" stroke-width="0.8"/>
+          <!-- C-pillar -->
+          <line x1="106" y1="37" x2="105" y2="78" stroke="rgba(0,0,0,0.45)" stroke-width="3"/>
+          <!-- B-pillar -->
+          <line x1="194" y1="37" x2="194" y2="78" stroke="rgba(0,0,0,0.45)" stroke-width="3"/>
+          <!-- A-pillar -->
+          <line x1="318" y1="37" x2="325" y2="44" stroke="rgba(0,0,0,0.45)" stroke-width="3"/>
+          <!-- Door gaps -->
+          <line x1="105" y1="78" x2="105" y2="124" stroke="rgba(0,0,0,0.35)" stroke-width="1.5"/>
+          <line x1="194" y1="78" x2="194" y2="124" stroke="rgba(0,0,0,0.35)" stroke-width="1.5"/>
+          <line x1="321" y1="50" x2="323" y2="124" stroke="rgba(0,0,0,0.3)" stroke-width="1.5"/>
+          <!-- Roof rail -->
+          <line x1="47" y1="34" x2="334" y2="34" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <!-- Side mirror -->
+          <path d="M 324 46 L 340 45 L 340 55 L 324 56 Z" fill="#28283a" stroke="rgba(139,45,245,0.2)" stroke-width="0.8"/>
+          <!-- Front light -->
+          <rect x="365" y="88" width="8" height="20" rx="2" fill="rgba(255,240,140,0.45)" stroke="rgba(255,240,140,0.2)" stroke-width="0.5"/>
+          <!-- Rear light -->
+          <rect x="24" y="96" width="5" height="18" rx="1" fill="rgba(220,50,50,0.45)" stroke="rgba(220,50,50,0.2)" stroke-width="0.5"/>
+          <!-- Roof rails (detail) -->
+          <line x1="80" y1="33" x2="310" y2="33" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+  <circle cx="100" cy="110" r="24" fill="#100d1e" stroke="rgba(120,60,220,0.6)" stroke-width="1.5"/>
+  <circle cx="100" cy="110" r="14" fill="#080712" stroke="rgba(100,50,180,0.3)" stroke-width="1"/>
+  <circle cx="100" cy="110" r="5" fill="rgba(139,45,245,0.5)"/>
+  <circle cx="300" cy="110" r="24" fill="#100d1e" stroke="rgba(120,60,220,0.6)" stroke-width="1.5"/>
+  <circle cx="300" cy="110" r="14" fill="#080712" stroke="rgba(100,50,180,0.3)" stroke-width="1"/>
+  <circle cx="300" cy="110" r="5" fill="rgba(139,45,245,0.5)"/>
+          <ellipse cx="200" cy="136" rx="170" ry="3.5" fill="rgba(0,0,0,0.3)"/>
         </svg>
         <div class="vc-label">SUV</div>
       </div>
@@ -249,16 +308,45 @@ footer a:hover{color:var(--hot)}
       <!-- SEDAN -->
       <div class="vehicle-card" data-vehicle="Sedan" tabindex="0" role="button" aria-label="Select Sedan">
         <div class="vc-check">&#10003;</div>
-        <svg viewBox="0 0 280 88" xmlns="http://www.w3.org/2000/svg">
-          <path class="vehicle-body" d="M22 72 L22 55 L34 42 L58 28 L82 21 L200 21 L226 30 L248 46 L258 52 L262 72 Z" fill="#3a3a4a" stroke="rgba(139,45,245,0.4)" stroke-width="1.5"/>
-          <path d="M68 23 L40 44 L106 44 L106 23 Z" fill="rgba(100,160,220,0.2)" stroke="rgba(139,45,245,0.28)" stroke-width="1"/>
-          <rect x="110" y="23" width="76" height="21" rx="1" fill="rgba(100,160,220,0.18)" stroke="rgba(139,45,245,0.25)" stroke-width="1"/>
-          <path d="M190 23 L190 44 L218 44 L226 30 Z" fill="rgba(100,160,220,0.18)" stroke="rgba(139,45,245,0.25)" stroke-width="1"/>
-          <circle cx="68" cy="72" r="17" fill="#16102a" stroke="rgba(139,45,245,0.45)" stroke-width="1.5"/>
-          <circle cx="68" cy="72" r="9" fill="#0a0815" stroke="rgba(139,45,245,0.22)" stroke-width="1"/>
-          <circle cx="212" cy="72" r="17" fill="#16102a" stroke="rgba(139,45,245,0.45)" stroke-width="1.5"/>
-          <circle cx="212" cy="72" r="9" fill="#0a0815" stroke="rgba(139,45,245,0.22)" stroke-width="1"/>
-          <line x1="8" y1="89" x2="272" y2="89" stroke="rgba(139,45,245,0.13)" stroke-width="1"/>
+        <svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="bshadow-c" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(0,0,0,0.0)"/><stop offset="100%" stop-color="rgba(0,0,0,0.35)"/></linearGradient></defs>
+          <!-- Body -->
+          <path class="vehicle-body" d="M 22 124 L 24 110 C 25 106,28 103,32 101 L 33 90 C 33 87,36 85,40 85 L 52 84 C 62 83,74 76,84 70 C 94 64,108 59,124 56 C 142 53,164 51,193 51 L 226 51 C 241 51,254 53,262 57 C 270 62,278 72,282 78 C 288 85,308 87,328 87 C 348 87,364 89,371 94 C 376 99,378 108,377 116 C 377 121,375 124,373 124 Z" fill="#3c3c4e"/>
+          <!-- Body shading -->
+          <path d="M 22 124 L 24 110 C 25 106,28 103,32 101 L 33 90 C 33 87,36 85,40 85 L 52 84 C 62 83,74 76,84 70 C 94 64,108 59,124 56 C 142 53,164 51,193 51 L 226 51 C 241 51,254 53,262 57 C 270 62,278 72,282 78 C 288 85,308 87,328 87 C 348 87,364 89,371 94 C 376 99,378 108,377 116 C 377 121,375 124,373 124 Z" fill="url(#bshadow-c)" opacity="0.4"/>
+          <!-- Rear quarter window (C-pillar) -->
+          <path d="M 104 64 L 122 57 L 124 73 L 102 78 Z" fill="rgba(120,185,255,0.18)" stroke="rgba(139,45,245,0.28)" stroke-width="0.8"/>
+          <!-- Rear door window -->
+          <path d="M 128 54 L 196 52 L 196 72 L 128 73 Z" fill="rgba(120,185,255,0.18)" stroke="rgba(139,45,245,0.28)" stroke-width="0.8"/>
+          <!-- Front door window -->
+          <path d="M 202 52 L 258 54 L 264 66 L 202 72 Z" fill="rgba(120,185,255,0.18)" stroke="rgba(139,45,245,0.28)" stroke-width="0.8"/>
+          <!-- C-pillar -->
+          <line x1="122" y1="57" x2="103" y2="79" stroke="rgba(0,0,0,0.45)" stroke-width="2.5"/>
+          <!-- B-pillar -->
+          <line x1="196" y1="52" x2="196" y2="72" stroke="rgba(0,0,0,0.45)" stroke-width="2.5"/>
+          <!-- A-pillar -->
+          <line x1="258" y1="54" x2="265" y2="67" stroke="rgba(0,0,0,0.45)" stroke-width="2.5"/>
+          <!-- Door gaps -->
+          <line x1="126" y1="73" x2="127" y2="124" stroke="rgba(0,0,0,0.3)" stroke-width="1.5"/>
+          <line x1="196" y1="72" x2="196" y2="124" stroke="rgba(0,0,0,0.3)" stroke-width="1.5"/>
+          <line x1="262" y1="68" x2="263" y2="124" stroke="rgba(0,0,0,0.28)" stroke-width="1.5"/>
+          <!-- Trunk lid line -->
+          <path d="M 52 84 C 60 83,72 78,82 72" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="none"/>
+          <!-- Hood highlight -->
+          <path d="M 282 78 C 300 84,320 86,340 87" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="none"/>
+          <!-- Mirror -->
+          <path d="M 262 58 L 276 57 L 276 65 L 262 66 Z" fill="#28283a" stroke="rgba(139,45,245,0.2)" stroke-width="0.8"/>
+          <!-- Front light -->
+          <rect x="368" y="96" width="7" height="18" rx="2" fill="rgba(255,240,140,0.45)" stroke="rgba(255,240,140,0.2)" stroke-width="0.5"/>
+          <!-- Rear light -->
+          <rect x="24" y="100" width="5" height="14" rx="1" fill="rgba(220,50,50,0.45)" stroke="rgba(220,50,50,0.2)" stroke-width="0.5"/>
+  <circle cx="100" cy="110" r="24" fill="#100d1e" stroke="rgba(120,60,220,0.6)" stroke-width="1.5"/>
+  <circle cx="100" cy="110" r="14" fill="#080712" stroke="rgba(100,50,180,0.3)" stroke-width="1"/>
+  <circle cx="100" cy="110" r="5" fill="rgba(139,45,245,0.5)"/>
+  <circle cx="300" cy="110" r="24" fill="#100d1e" stroke="rgba(120,60,220,0.6)" stroke-width="1.5"/>
+  <circle cx="300" cy="110" r="14" fill="#080712" stroke="rgba(100,50,180,0.3)" stroke-width="1"/>
+  <circle cx="300" cy="110" r="5" fill="rgba(139,45,245,0.5)"/>
+          <ellipse cx="200" cy="136" rx="170" ry="3.5" fill="rgba(0,0,0,0.3)"/>
         </svg>
         <div class="vc-label">Sedan</div>
       </div>
@@ -266,17 +354,44 @@ footer a:hover{color:var(--hot)}
       <!-- VAN -->
       <div class="vehicle-card" data-vehicle="Van / Work Vehicle" tabindex="0" role="button" aria-label="Select Van">
         <div class="vc-check">&#10003;</div>
-        <svg viewBox="0 0 280 88" xmlns="http://www.w3.org/2000/svg">
-          <path class="vehicle-body" d="M20 72 L20 16 L30 10 L228 10 L248 18 L258 32 L260 52 L262 72 Z" fill="#3a3a4a" stroke="rgba(139,45,245,0.4)" stroke-width="1.5"/>
-          <path d="M26 12 L26 36 L102 36 L102 12 Z" fill="rgba(100,160,220,0.2)" stroke="rgba(139,45,245,0.28)" stroke-width="1"/>
-          <rect x="106" y="14" width="56" height="20" rx="1" fill="rgba(100,160,220,0.16)" stroke="rgba(139,45,245,0.22)" stroke-width="1"/>
-          <rect x="166" y="14" width="54" height="20" rx="1" fill="rgba(100,160,220,0.16)" stroke="rgba(139,45,245,0.22)" stroke-width="1"/>
-          <line x1="102" y1="10" x2="102" y2="72" stroke="rgba(139,45,245,0.28)" stroke-width="1.5"/>
-          <circle cx="62" cy="72" r="17" fill="#16102a" stroke="rgba(139,45,245,0.45)" stroke-width="1.5"/>
-          <circle cx="62" cy="72" r="9" fill="#0a0815" stroke="rgba(139,45,245,0.22)" stroke-width="1"/>
-          <circle cx="212" cy="72" r="17" fill="#16102a" stroke="rgba(139,45,245,0.45)" stroke-width="1.5"/>
-          <circle cx="212" cy="72" r="9" fill="#0a0815" stroke="rgba(139,45,245,0.22)" stroke-width="1"/>
-          <line x1="8" y1="89" x2="272" y2="89" stroke="rgba(139,45,245,0.13)" stroke-width="1"/>
+        <svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="bshadow-v" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(0,0,0,0.0)"/><stop offset="100%" stop-color="rgba(0,0,0,0.35)"/></linearGradient></defs>
+          <!-- Body -->
+          <path class="vehicle-body" d="M 22 124 L 24 110 C 25 106,28 103,32 102 L 32 30 C 32 26,36 24,42 24 L 318 24 C 326 24,333 27,337 33 C 341 40,346 52,350 64 C 354 77,360 93,370 108 C 373 114,377 118,377 124 Z" fill="#3c3c4e"/>
+          <!-- Body shading -->
+          <path d="M 22 124 L 24 110 C 25 106,28 103,32 102 L 32 30 C 32 26,36 24,42 24 L 318 24 C 326 24,333 27,337 33 C 341 40,346 52,350 64 C 354 77,360 93,370 108 C 373 114,377 118,377 124 Z" fill="url(#bshadow-v)" opacity="0.4"/>
+          <!-- Cargo side windows (porthole style) -->
+          <rect x="52" y="30" width="88" height="44" rx="3" fill="rgba(120,185,255,0.18)" stroke="rgba(139,45,245,0.28)" stroke-width="0.8"/>
+          <rect x="148" y="30" width="88" height="44" rx="3" fill="rgba(120,185,255,0.18)" stroke="rgba(139,45,245,0.28)" stroke-width="0.8"/>
+          <!-- Cab side window -->
+          <path d="M 255 28 L 314 28 L 318 33 C 323 40,328 52,330 62 L 255 62 Z" fill="rgba(120,185,255,0.18)" stroke="rgba(139,45,245,0.28)" stroke-width="0.8"/>
+          <!-- A-pillar -->
+          <line x1="315" y1="28" x2="332" y2="46" stroke="rgba(0,0,0,0.5)" stroke-width="3"/>
+          <!-- B-pillar (cab/cargo division) -->
+          <line x1="250" y1="24" x2="250" y2="124" stroke="rgba(0,0,0,0.4)" stroke-width="3"/>
+          <!-- Cargo window divider -->
+          <line x1="143" y1="24" x2="143" y2="78" stroke="rgba(0,0,0,0.3)" stroke-width="1.5"/>
+          <!-- Sliding door rail -->
+          <line x1="52" y1="82" x2="244" y2="82" stroke="rgba(0,0,0,0.25)" stroke-width="1.5"/>
+          <!-- Sliding door gap -->
+          <line x1="244" y1="24" x2="244" y2="124" stroke="rgba(0,0,0,0.35)" stroke-width="1.5"/>
+          <!-- Roof highlight -->
+          <line x1="42" y1="24" x2="318" y2="24" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <!-- Mirror -->
+          <path d="M 332 40 L 348 39 L 348 52 L 332 53 Z" fill="#28283a" stroke="rgba(139,45,245,0.2)" stroke-width="0.8"/>
+          <!-- Front light -->
+          <rect x="365" y="90" width="8" height="24" rx="2" fill="rgba(255,240,140,0.45)" stroke="rgba(255,240,140,0.2)" stroke-width="0.5"/>
+          <!-- Rear light -->
+          <rect x="24" y="96" width="5" height="18" rx="1" fill="rgba(220,50,50,0.45)" stroke="rgba(220,50,50,0.2)" stroke-width="0.5"/>
+          <!-- Bumper bars -->
+          <path d="M 32 104 L 32 124" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  <circle cx="100" cy="110" r="24" fill="#100d1e" stroke="rgba(120,60,220,0.6)" stroke-width="1.5"/>
+  <circle cx="100" cy="110" r="14" fill="#080712" stroke="rgba(100,50,180,0.3)" stroke-width="1"/>
+  <circle cx="100" cy="110" r="5" fill="rgba(139,45,245,0.5)"/>
+  <circle cx="300" cy="110" r="24" fill="#100d1e" stroke="rgba(120,60,220,0.6)" stroke-width="1.5"/>
+  <circle cx="300" cy="110" r="14" fill="#080712" stroke="rgba(100,50,180,0.3)" stroke-width="1"/>
+  <circle cx="300" cy="110" r="5" fill="rgba(139,45,245,0.5)"/>
+          <ellipse cx="200" cy="136" rx="170" ry="3.5" fill="rgba(0,0,0,0.3)"/>
         </svg>
         <div class="vc-label">Van</div>
       </div>
