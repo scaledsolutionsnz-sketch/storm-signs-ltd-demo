@@ -217,7 +217,7 @@ footer a:hover{color:var(--hot)}
         <div class="vc-check">&#10003;</div>
         <div class="vc-img-wrap">
           <img src="/assets/vehicles/ute.png" class="vc-img" alt="Ute / Pickup" loading="lazy">
-          <div class="vc-colour-tint" style="background:#1c1c1e;-webkit-mask-image:url(/assets/vehicles/ute.png);mask-image:url(/assets/vehicles/ute.png)"></div>
+          <div class="vc-colour-tint" style="background:#1c1c1e;-webkit-mask-image:url(/assets/vehicles/ute-mask.png);mask-image:url(/assets/vehicles/ute-mask.png)"></div>
         </div>
 
         <div class="vc-label">Ute / Pickup</div>
@@ -228,7 +228,7 @@ footer a:hover{color:var(--hot)}
         <div class="vc-check">&#10003;</div>
         <div class="vc-img-wrap">
           <img src="/assets/vehicles/suv.png" class="vc-img" alt="SUV" loading="lazy">
-          <div class="vc-colour-tint" style="background:#1c1c1e;-webkit-mask-image:url(/assets/vehicles/suv.png);mask-image:url(/assets/vehicles/suv.png)"></div>
+          <div class="vc-colour-tint" style="background:#1c1c1e;-webkit-mask-image:url(/assets/vehicles/suv-mask.png);mask-image:url(/assets/vehicles/suv-mask.png)"></div>
         </div>
 
         <div class="vc-label">SUV</div>
@@ -239,7 +239,7 @@ footer a:hover{color:var(--hot)}
         <div class="vc-check">&#10003;</div>
         <div class="vc-img-wrap">
           <img src="/assets/vehicles/sedan.png" class="vc-img" alt="Sedan" loading="lazy">
-          <div class="vc-colour-tint" style="background:#1c1c1e;-webkit-mask-image:url(/assets/vehicles/sedan.png);mask-image:url(/assets/vehicles/sedan.png)"></div>
+          <div class="vc-colour-tint" style="background:#1c1c1e;-webkit-mask-image:url(/assets/vehicles/sedan-mask.png);mask-image:url(/assets/vehicles/sedan-mask.png)"></div>
         </div>
 
         <div class="vc-label">Sedan</div>
@@ -250,7 +250,7 @@ footer a:hover{color:var(--hot)}
         <div class="vc-check">&#10003;</div>
         <div class="vc-img-wrap">
           <img src="/assets/vehicles/hatchback.png" class="vc-img" alt="Hatchback" loading="lazy">
-          <div class="vc-colour-tint" style="background:#1c1c1e;-webkit-mask-image:url(/assets/vehicles/hatchback.png);mask-image:url(/assets/vehicles/hatchback.png)"></div>
+          <div class="vc-colour-tint" style="background:#1c1c1e;-webkit-mask-image:url(/assets/vehicles/hatchback-mask.png);mask-image:url(/assets/vehicles/hatchback-mask.png)"></div>
         </div>
 
         <div class="vc-label">Hatchback</div>
@@ -463,30 +463,45 @@ function updateAll(){
   document.getElementById('spec-style').textContent   = state.style   || 'Not selected';
   document.getElementById('spec-colour').textContent  = state.colour + ' (' + state.hex + ')';
 
-  // Preview — swap image src and update colour tint
+  // Determine which mask to use based on wrap style
+  const vehicleKey = state.vehicle ? vehicleImgMap[state.vehicle].split('/').pop().replace('.png','') : null;
+  function getMaskSrc(key){
+    if(!key) return '';
+    const s = state.style||'';
+    if(s === 'Partial Wrap (bonnet + roof)') return '/assets/vehicles/'+key+'-mask-partial.png';
+    if(s === 'Decals & Lettering Only')       return '/assets/vehicles/'+key+'-mask-decals.png';
+    return '/assets/vehicles/'+key+'-mask.png';
+  }
+  function getTintOpacity(){
+    if((state.style||'')==='Decals & Lettering Only') return '0.55';
+    return '1';
+  }
+
+  // Preview panel
   const empty = document.getElementById('preview-empty');
   const carWrap = document.getElementById('preview-car-wrap');
   const carImg  = document.getElementById('preview-car-img');
   const carTint = document.getElementById('preview-colour-tint');
   if(state.vehicle && vehicleImgMap[state.vehicle]){
-    const src = vehicleImgMap[state.vehicle];
     empty.style.display = 'none';
     carWrap.style.display = 'block';
-    carImg.src = src;
+    carImg.src = vehicleImgMap[state.vehicle];
     carImg.alt = state.vehicle;
-    if(carTint){
-      carTint.style.webkitMaskImage = 'url('+src+')';
-      carTint.style.maskImage = 'url('+src+')';
-      carTint.style.webkitMaskSize = 'contain';
-      carTint.style.maskSize = 'contain';
-      carTint.style.webkitMaskRepeat = 'no-repeat';
-      carTint.style.maskRepeat = 'no-repeat';
-      carTint.style.webkitMaskPosition = 'center';
-      carTint.style.maskPosition = 'center';
-    }
   }
-  if(carTint) carTint.style.background = state.hex;
-  // Update card tint overlays
+  if(carTint && vehicleKey){
+    const mSrc = getMaskSrc(vehicleKey);
+    carTint.style.webkitMaskImage = 'url('+mSrc+')';
+    carTint.style.maskImage = 'url('+mSrc+')';
+    carTint.style.webkitMaskSize = 'contain';
+    carTint.style.maskSize = 'contain';
+    carTint.style.webkitMaskRepeat = 'no-repeat';
+    carTint.style.maskRepeat = 'no-repeat';
+    carTint.style.webkitMaskPosition = 'center';
+    carTint.style.maskPosition = 'center';
+    carTint.style.background = state.hex;
+    carTint.style.opacity = getTintOpacity();
+  }
+  // Update card tint overlays (always full body mask, just colour changes)
   document.querySelectorAll('.vc-colour-tint').forEach(el => el.style.background = state.hex);
 
   // Form hidden fields
