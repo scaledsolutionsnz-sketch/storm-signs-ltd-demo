@@ -9,52 +9,45 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:      #07010f;
-      --bg2:     #0b021a;
-      --bg3:     #0f0320;
-      --card:    rgba(15,3,32,0.92);
-      --accent:  #8b2df5;
-      --accent2: #4d00b8;
-      --vivid:   #a855f7;
-      --hot:     #c084fc;
-      --glow:    rgba(139,45,245,0.42);
-      --text:    #f2eaff;
-      --muted:   rgba(215,190,255,0.58);
-      --border:  rgba(139,45,245,0.22);
+      --bg:     #07010f;
+      --bg2:    #0b021a;
+      --bg3:    #0f0320;
+      --card:   rgba(15,3,32,0.94);
+      --accent: #8b2df5;
+      --accent2:#4d00b8;
+      --vivid:  #a855f7;
+      --hot:    #c084fc;
+      --glow:   rgba(139,45,245,0.42);
+      --text:   #f2eaff;
+      --muted:  rgba(215,190,255,0.58);
+      --border: rgba(139,45,245,0.2);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
     h1, h2, h3, h4 { font-family: 'Syne', sans-serif; }
 
-    /* ── FILM GRAIN (premium texture) ── */
+    /* ── FILM GRAIN ── */
     body::before {
-      content: '';
-      position: fixed; inset: -50%; width: 200%; height: 200%;
+      content: ''; position: fixed; inset: -50%; width: 200%; height: 200%;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      opacity: 0.032; pointer-events: none; z-index: 9998;
+      opacity: 0.03; pointer-events: none; z-index: 9998;
       animation: grain 0.4s steps(1) infinite;
     }
     @keyframes grain {
-      0%,100%{transform:translate(0,0)} 10%{transform:translate(-1%,-1%)}
-      20%{transform:translate(1%,-1%)} 30%{transform:translate(-1%,1%)}
-      40%{transform:translate(1%,1%)} 50%{transform:translate(-2%,0)}
-      60%{transform:translate(2%,0)} 70%{transform:translate(0,-2%)}
-      80%{transform:translate(0,2%)} 90%{transform:translate(-1%,1%)}
+      0%,100%{transform:translate(0,0)} 10%{transform:translate(-1%,-1%)} 20%{transform:translate(1%,-1%)}
+      30%{transform:translate(-1%,1%)} 40%{transform:translate(1%,1%)} 50%{transform:translate(-2%,0)}
+      60%{transform:translate(2%,0)} 70%{transform:translate(0,-2%)} 80%{transform:translate(0,2%)}
     }
 
-    /* ── FULL-PAGE LIGHTNING CANVAS ── */
-    #bg-lightning {
-      position: fixed; inset: 0; width: 100%; height: 100%;
-      pointer-events: none; z-index: 9997;
-      mix-blend-mode: screen;
-    }
+    /* ── FULL-PAGE LIGHTNING ── */
+    #bg-lightning { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9997; mix-blend-mode: screen; }
 
     /* ── ANNOUNCE ── */
     .announce {
       background: linear-gradient(90deg, #2d0073, var(--accent) 50%, #9333ea);
       color: #fff; text-align: center; padding: 0.55rem 1rem;
-      font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+      font-size: 0.74rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
       position: relative; z-index: 10000;
     }
     .announce a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
@@ -65,142 +58,70 @@
       display: flex; align-items: center; justify-content: space-between;
       transition: background 0.35s, top 0.35s, box-shadow 0.35s;
     }
-    nav.scrolled {
-      top: 0; background: rgba(7,1,15,0.97);
-      backdrop-filter: blur(24px);
-      border-bottom: 1px solid rgba(139,45,245,0.15);
-      box-shadow: 0 4px 40px rgba(0,0,0,0.8);
-    }
+    nav.scrolled { top: 0; background: rgba(7,1,15,0.97); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(139,45,245,0.12); box-shadow: 0 4px 40px rgba(0,0,0,0.8); }
     .nav-logo { padding: 1rem 1.5rem; text-decoration: none; }
     .nav-logo img { height: 38px; filter: brightness(0) invert(1); }
     .nav-links { display: flex; align-items: center; gap: 2.5rem; }
     .nav-links a { color: rgba(242,234,255,0.6); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em; transition: color 0.2s; }
     .nav-links a:hover { color: var(--hot); }
     .nav-right { padding: 0 1.5rem; }
-    .nav-cta {
-      padding: 0.55rem 1.4rem;
-      background: linear-gradient(90deg, var(--accent2), var(--accent));
-      color: #fff; border-radius: 4px; font-size: 0.75rem; font-weight: 800;
-      text-decoration: none; letter-spacing: 0.09em; text-transform: uppercase;
-      transition: all 0.2s; box-shadow: 0 0 0 rgba(139,45,245,0);
-    }
+    .nav-cta { padding: 0.55rem 1.4rem; background: linear-gradient(90deg, var(--accent2), var(--accent)); color: #fff; border-radius: 4px; font-size: 0.75rem; font-weight: 800; text-decoration: none; letter-spacing: 0.09em; text-transform: uppercase; transition: all 0.2s; }
     .nav-cta:hover { box-shadow: 0 0 28px var(--glow); transform: translateY(-1px); opacity: 0.92; }
     @media (max-width: 768px) { .nav-links { display: none; } }
 
     /* ── BOLT DIVIDER ── */
     .bolt-div {
       display: flex; align-items: center; justify-content: center;
-      padding: 0; overflow: hidden; position: relative; height: 2px;
+      height: 2px; overflow: visible; position: relative; z-index: 2;
     }
     .bolt-div::before {
       content: ''; position: absolute; inset: 0; height: 1px; top: 50%;
-      background: linear-gradient(90deg, transparent, rgba(139,45,245,0.35) 30%, rgba(192,132,252,0.6) 50%, rgba(139,45,245,0.35) 70%, transparent);
+      background: linear-gradient(90deg, transparent, rgba(139,45,245,0.4) 30%, rgba(192,132,252,0.65) 50%, rgba(139,45,245,0.4) 70%, transparent);
     }
-    .bolt-div span {
-      position: relative; z-index: 1; background: var(--bg);
-      padding: 0 0.75rem; font-size: 0.9rem; line-height: 1;
-      filter: drop-shadow(0 0 8px var(--accent));
-    }
+    .bolt-div span { position: relative; z-index: 1; background: var(--bgcolor,var(--bg)); padding: 0 0.8rem; font-size: 0.9rem; line-height: 1; filter: drop-shadow(0 0 9px var(--accent)); }
 
     /* ── HERO ── */
     .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
     #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background-image: url('https://static.wixstatic.com/media/4591aa_7216f20e0533476e9e721d9f9551d4fd~mv2.jpg');
-      background-size: cover; background-position: center; opacity: 0.07;
-    }
-    .hero-atmosphere {
+    .hero-bg { position: absolute; inset: 0; background-image: url('https://static.wixstatic.com/media/4591aa_7216f20e0533476e9e721d9f9551d4fd~mv2.jpg'); background-size: cover; background-position: center; opacity: 0.07; }
+    .hero-atmo {
       position: absolute; inset: 0; pointer-events: none;
       background:
         radial-gradient(ellipse 90% 70% at 65% 55%, rgba(100,30,200,0.22) 0%, transparent 55%),
         radial-gradient(ellipse 60% 90% at 10% 85%, rgba(70,0,160,0.18) 0%, transparent 50%),
         radial-gradient(ellipse 40% 40% at 80% 10%, rgba(139,45,245,0.12) 0%, transparent 50%);
     }
-    /* Large decorative bolt */
-    .hero-bolt-bg {
+    .hero-bolt-shape {
       position: absolute; right: 3%; top: 50%; transform: translateY(-50%);
       width: 380px; height: 560px; pointer-events: none;
       background: linear-gradient(160deg, rgba(192,132,252,0.1), rgba(77,0,184,0.06));
       clip-path: polygon(60% 0%, 15% 48%, 44% 48%, 25% 100%, 85% 40%, 48% 40%);
-      animation: boltPulse 6s ease-in-out infinite;
-      filter: blur(1px);
+      animation: boltPulse 6s ease-in-out infinite; filter: blur(1px);
     }
     @keyframes boltPulse { 0%,100%{opacity:0.7;transform:translateY(-50%) scale(1)} 50%{opacity:1;transform:translateY(-50%) scale(1.05)} }
-    /* Cloud decorations */
     .cloud-deco { position: absolute; pointer-events: none; background-repeat: no-repeat; background-size: contain; }
-    .cloud-a {
-      width: 700px; height: 490px; right: -40px; top: -2%;
-      background-image: url('https://static.wixstatic.com/media/4591aa_7bc21e488c86427db75510cdd4d756c1~mv2.png/v1/crop/x_0,y_0,w_4126,h_1934/fill/w_1404,h_658,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/cloud_09.png');
-      opacity: 0.12; filter: hue-rotate(265deg) saturate(0.8) brightness(1.8);
-      animation: floatA 20s ease-in-out infinite;
-    }
-    .cloud-b {
-      width: 490px; height: 680px; left: -40px; bottom: -2%;
-      background-image: url('https://static.wixstatic.com/media/4591aa_7427c0cde02b48eeadbdac8b88335116~mv2.png/v1/crop/x_0,y_56,w_2776,h_4071/fill/w_600,h_880,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/cloud_08.png');
-      opacity: 0.08; filter: hue-rotate(265deg) saturate(0.8) brightness(1.8);
-      animation: floatB 26s ease-in-out infinite;
-    }
+    .cloud-a { width: 700px; height: 490px; right: -40px; top: -2%; background-image: url('https://static.wixstatic.com/media/4591aa_7bc21e488c86427db75510cdd4d756c1~mv2.png/v1/crop/x_0,y_0,w_4126,h_1934/fill/w_1404,h_658,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/cloud_09.png'); opacity: 0.12; filter: hue-rotate(265deg) saturate(0.8) brightness(1.8); animation: floatA 20s ease-in-out infinite; }
+    .cloud-b { width: 490px; height: 680px; left: -40px; bottom: -2%; background-image: url('https://static.wixstatic.com/media/4591aa_7427c0cde02b48eeadbdac8b88335116~mv2.png/v1/crop/x_0,y_56,w_2776,h_4071/fill/w_600,h_880,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/cloud_08.png'); opacity: 0.08; filter: hue-rotate(265deg) saturate(0.8) brightness(1.8); animation: floatB 26s ease-in-out infinite; }
     @keyframes floatA { 0%,100%{transform:translate(0,0) scale(1)} 40%{transform:translate(-22px,14px) scale(1.02)} 70%{transform:translate(16px,-10px) scale(0.98)} }
     @keyframes floatB { 0%,100%{transform:translate(0,0) scale(1)} 35%{transform:translate(18px,-20px) scale(1.03)} 65%{transform:translate(-12px,8px) scale(0.97)} }
-
-    .hero-content {
-      position: relative; z-index: 2;
-      max-width: 1200px; margin: 0 auto; padding: 9rem 2rem 5rem; width: 100%;
-    }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 0.7rem; margin-bottom: 1.75rem;
-      font-size: 0.7rem; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--hot);
-    }
+    .hero-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 9rem 2rem 5rem; width: 100%; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 0.7rem; margin-bottom: 1.75rem; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; color: var(--hot); }
     .hero-eyebrow::before { content: ''; width: 36px; height: 1.5px; background: linear-gradient(90deg, var(--accent), var(--hot)); }
-    .hero h1 {
-      font-size: clamp(3.6rem, 8vw, 7.5rem); font-weight: 800;
-      line-height: 0.92; letter-spacing: -0.03em; color: #fff;
-      margin-bottom: 1.75rem; max-width: 860px;
-    }
-    .hero h1 .shimmer {
-      background: linear-gradient(120deg, #c084fc, #e879f9, #a855f7, #7c3aed, #c084fc);
-      background-size: 300% auto;
-      -webkit-background-clip: text; background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shimmer 4s linear infinite;
-      filter: drop-shadow(0 0 18px rgba(168,85,247,0.65));
-    }
+    .hero h1 { font-size: clamp(3.6rem, 8vw, 7.5rem); font-weight: 800; line-height: 0.92; letter-spacing: -0.03em; color: #fff; margin-bottom: 1.75rem; max-width: 860px; }
+    .hero h1 .shimmer { background: linear-gradient(120deg, #c084fc, #e879f9, #a855f7, #7c3aed, #c084fc); background-size: 300% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: shimmer 4s linear infinite; filter: drop-shadow(0 0 18px rgba(168,85,247,0.65)); }
     @keyframes shimmer { to { background-position: 300% center; } }
-    .hero-sub {
-      font-size: 1.05rem; color: var(--muted); max-width: 500px;
-      line-height: 1.85; margin-bottom: 3rem; font-weight: 300;
-    }
+    .hero-sub { font-size: 1.05rem; color: var(--muted); max-width: 500px; line-height: 1.85; margin-bottom: 3rem; font-weight: 300; }
     .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 1rem 2.4rem;
-      background: linear-gradient(90deg, var(--accent2), var(--accent));
-      color: #fff; border-radius: 4px; font-weight: 700; font-size: 0.88rem;
-      text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase;
-      transition: all 0.25s;
-    }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2.4rem; background: linear-gradient(90deg, var(--accent2), var(--accent)); color: #fff; border-radius: 4px; font-weight: 700; font-size: 0.88rem; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: all 0.25s; }
     .btn-primary:hover { box-shadow: 0 8px 32px rgba(139,45,245,0.6); transform: translateY(-2px); opacity: 0.92; }
-    .btn-ghost {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 1rem 2.4rem; border: 1.5px solid rgba(242,234,255,0.2); color: var(--text);
-      border-radius: 4px; font-weight: 500; font-size: 0.88rem;
-      text-decoration: none; letter-spacing: 0.05em; transition: all 0.2s;
-    }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2.4rem; border: 1.5px solid rgba(242,234,255,0.2); color: var(--text); border-radius: 4px; font-weight: 500; font-size: 0.88rem; text-decoration: none; letter-spacing: 0.05em; transition: all 0.2s; }
     .btn-ghost:hover { border-color: var(--hot); color: var(--hot); }
-    .hero-badges {
-      display: flex; gap: 3rem; margin-top: 4.5rem; padding-top: 3rem;
-      border-top: 1px solid rgba(255,255,255,0.05); flex-wrap: wrap;
-    }
+    .hero-badges { display: flex; gap: 3rem; margin-top: 4.5rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.05); flex-wrap: wrap; }
     .hero-badge .num { font-family: 'Syne',sans-serif; font-size: 2.4rem; font-weight: 800; color: var(--hot); line-height: 1; }
     .hero-badge .lbl { font-size: 0.72rem; color: var(--muted); margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.09em; }
 
     /* ── MARQUEE ── */
-    .marquee-wrap {
-      background: linear-gradient(90deg, #2d0073, var(--accent) 45%, #9333ea 80%, #c026d3);
-      overflow: hidden; padding: 0.9rem 0;
-    }
+    .marquee-wrap { background: linear-gradient(90deg, #2d0073, var(--accent) 45%, #9333ea 80%, #c026d3); overflow: hidden; padding: 0.9rem 0; }
     .marquee-track { display: flex; width: max-content; animation: marquee 26s linear infinite; }
     .marquee-track span { white-space: nowrap; padding: 0 2.2rem; font-size: 0.76rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(7,1,15,0.85); }
     .marquee-track .bolt { padding: 0 0.8rem; font-size: 0.88rem; }
@@ -208,224 +129,132 @@
 
     /* ── BRAND STRIP ── */
     .brand-strip { background: var(--bg2); padding: 3.5rem 0; overflow: hidden; position: relative; }
-    .brand-strip::before, .brand-strip::after {
-      content: ''; position: absolute; top: 0; bottom: 0; width: 160px; z-index: 2; pointer-events: none;
-    }
+    .brand-strip::before, .brand-strip::after { content: ''; position: absolute; top: 0; bottom: 0; width: 160px; z-index: 2; pointer-events: none; }
     .brand-strip::before { left: 0; background: linear-gradient(90deg, var(--bg2), transparent); }
     .brand-strip::after  { right: 0; background: linear-gradient(-90deg, var(--bg2), transparent); }
     .brand-track { display: flex; align-items: center; gap: 5rem; width: max-content; animation: brandScroll 34s linear infinite; }
     .brand-track img { height: 85px; opacity: 0.88; object-fit: contain; filter: drop-shadow(0 0 14px rgba(139,45,245,0.25)); }
     @keyframes brandScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
-    /* ── LAYOUT HELPERS ── */
+    /* ── HELPERS ── */
     .container { max-width: 1100px; margin: 0 auto; }
     .section-label { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; color: var(--hot); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.45rem; }
     .section-title { font-size: clamp(2.2rem, 4.5vw, 3.6rem); font-weight: 800; line-height: 1.02; letter-spacing: -0.025em; margin-bottom: 1rem; }
     .section-sub { font-size: 0.95rem; color: var(--muted); max-width: 500px; line-height: 1.82; }
     .glow-line { width: 52px; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); margin-bottom: 1.5rem; border-radius: 2px; }
 
-    /* ── SERVICES ── */
-    .services { padding: 7rem 2rem; background: var(--bg); position: relative; overflow: hidden; }
-    .services-cloud {
-      position: absolute; width: 520px; height: 360px; right: -70px; top: 50%; transform: translateY(-50%);
-      background-image: url('https://static.wixstatic.com/media/4591aa_7bc21e488c86427db75510cdd4d756c1~mv2.png/v1/crop/x_0,y_0,w_4126,h_1934/fill/w_702,h_329,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/cloud_09.png');
-      background-size: contain; background-repeat: no-repeat;
-      opacity: 0.04; pointer-events: none;
-      filter: hue-rotate(265deg) saturate(0.6) brightness(2);
-      animation: floatA 24s ease-in-out infinite;
+    /* ── SERVICES (EDITORIAL REDESIGN) ── */
+    .services { padding: 7rem 2rem 6rem; background: var(--bg); position: relative; overflow: hidden; }
+    .services-cloud { position: absolute; width: 520px; height: 360px; right: -70px; top: 50%; transform: translateY(-50%); background-image: url('https://static.wixstatic.com/media/4591aa_7bc21e488c86427db75510cdd4d756c1~mv2.png/v1/crop/x_0,y_0,w_4126,h_1934/fill/w_702,h_329,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/cloud_09.png'); background-size: contain; background-repeat: no-repeat; opacity: 0.04; pointer-events: none; filter: hue-rotate(265deg) saturate(0.6) brightness(2); animation: floatA 24s ease-in-out infinite; }
+    .services-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 4.5rem; }
+    @media (max-width: 900px) { .services-intro { grid-template-columns: 1fr; gap: 1.5rem; } }
+    /* Two large feature cards */
+    .services-features { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+    @media (max-width: 700px) { .services-features { grid-template-columns: 1fr; } }
+    .service-feat {
+      position: relative; border-radius: 16px; overflow: hidden; height: 340px; cursor: default;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     }
-    .services-header { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: end; margin-bottom: 4rem; }
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    @media (max-width: 900px) { .services-grid{grid-template-columns:1fr 1fr} .services-header{grid-template-columns:1fr} }
-    @media (max-width: 600px) { .services-grid{grid-template-columns:1fr} }
-    .service-card {
-      background: var(--card); border-radius: 14px; padding: 2.25rem 2rem;
-      cursor: default; transition: transform 0.15s, box-shadow 0.15s;
-      position: relative; overflow: hidden;
-      border: 1px solid transparent;
-      background-clip: padding-box;
+    .service-feat img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .service-feat:hover img { transform: scale(1.07); }
+    .service-feat-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 2rem 2rem 1.75rem;
+      background: linear-gradient(0deg, rgba(7,1,15,0.97) 0%, rgba(7,1,15,0.7) 50%, transparent 100%);
     }
-    /* Gradient border via outline trick */
-    .service-card::before {
-      content: ''; position: absolute; inset: 0; border-radius: 14px; padding: 1px;
-      background: linear-gradient(135deg, rgba(139,45,245,0.3), rgba(192,132,252,0.1), rgba(139,45,245,0.05));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+    .service-feat-tag { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hot); margin-bottom: 0.4rem; }
+    .service-feat h3 { font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 0.4rem; line-height: 1.1; }
+    .service-feat p { font-size: 0.84rem; color: var(--muted); line-height: 1.6; }
+    /* Four remaining services - left-border style */
+    .services-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 700px) { .services-list { grid-template-columns: 1fr; } }
+    .service-item {
+      padding: 1.6rem 1.75rem; position: relative;
+      border-left: 2px solid rgba(139,45,245,0.3);
+      background: rgba(15,3,32,0.6); border-radius: 0 12px 12px 0;
+      transition: border-color 0.25s, background 0.25s, transform 0.2s;
     }
-    .service-card::after {
-      content: ''; position: absolute; inset: 0; opacity: 0; border-radius: 14px;
-      background: radial-gradient(circle at 50% 0%, rgba(139,45,245,0.1) 0%, transparent 70%);
-      transition: opacity 0.3s;
-    }
-    .service-card:hover { transform: translateY(-7px); box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(139,45,245,0.45); }
-    .service-card:hover::after { opacity: 1; }
-    .service-icon {
-      width: 52px; height: 52px; border-radius: 12px;
-      background: rgba(139,45,245,0.12); border: 1px solid rgba(139,45,245,0.3);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.35rem; margin-bottom: 1.5rem;
-      transition: background 0.2s, box-shadow 0.2s;
-    }
-    .service-card:hover .service-icon { background: rgba(139,45,245,0.25); box-shadow: 0 0 22px rgba(139,45,245,0.45); }
-    .service-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; color: #fff; }
-    .service-card p { font-size: 0.86rem; color: var(--muted); line-height: 1.75; }
+    .service-item:hover { border-color: var(--vivid); background: rgba(139,45,245,0.09); transform: translateX(4px); }
+    .service-item h3 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
+    .service-item p { font-size: 0.84rem; color: var(--muted); line-height: 1.65; }
 
-    /* ── SHOWCASE ── */
+    /* ── SHOWCASE BANNER ── */
     .showcase { position: relative; overflow: hidden; line-height: 0; }
     .showcase img { width: 100%; display: block; object-fit: cover; max-height: 360px; opacity: 0.88; }
-    .showcase::before {
-      content: ''; position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(180deg, rgba(7,1,15,0.5) 0%, transparent 25%, transparent 75%, rgba(7,1,15,0.5) 100%);
-    }
+    .showcase::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(7,1,15,0.5) 0%, transparent 25%, transparent 75%, rgba(7,1,15,0.5) 100%); }
 
-    /* ── MILITARY HERITAGE ── */
-    .military {
-      padding: 8rem 2rem; background: var(--bg3); position: relative; overflow: hidden;
+    /* ── VEHICLE WRAPS FEATURE ── */
+    .vehicle-section { padding: 7rem 2rem; background: var(--bg2); position: relative; overflow: hidden; }
+    .vehicle-section::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-55deg, transparent, transparent 40px, rgba(139,45,245,0.018) 40px, rgba(139,45,245,0.018) 41px); pointer-events: none; }
+    .vehicle-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; position: relative; }
+    @media (max-width: 900px) { .vehicle-grid { grid-template-columns: 1fr; gap: 3rem; } }
+    .vehicle-img-wrap {
+      position: relative; border-radius: 18px; overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(139,45,245,0.2);
+      background: #0b021a;
     }
-    .military::before {
-      content: ''; position: absolute; inset: 0;
-      background: repeating-linear-gradient(-55deg, transparent, transparent 38px, rgba(139,45,245,0.022) 38px, rgba(139,45,245,0.022) 39px);
-      pointer-events: none;
-    }
-    .military-glow {
-      position: absolute; width: 700px; height: 700px;
-      left: 50%; top: 50%; transform: translate(-50%,-50%);
-      background: radial-gradient(circle, rgba(139,45,245,0.08) 0%, transparent 65%);
-      pointer-events: none;
-    }
+    .vehicle-img-wrap img { width: 100%; display: block; object-fit: contain; max-height: 580px; }
+    .vehicle-img-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,1,15,0.15) 0%, transparent 20%, transparent 80%, rgba(7,1,15,0.15) 100%); pointer-events: none; }
+    .vehicle-text p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.25rem; line-height: 1.85; }
+    .vehicle-stats { display: flex; gap: 2.5rem; margin: 2.5rem 0; flex-wrap: wrap; }
+    .vehicle-stat .num { font-family: 'Syne',sans-serif; font-size: 2.6rem; font-weight: 800; color: var(--hot); line-height: 1; }
+    .vehicle-stat .lbl { font-size: 0.73rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.09em; margin-top: 0.2rem; }
+
+    /* ── MILITARY ── */
+    .military { padding: 8rem 2rem; background: var(--bg3); position: relative; overflow: hidden; }
+    .military::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-55deg, transparent, transparent 38px, rgba(139,45,245,0.022) 38px, rgba(139,45,245,0.022) 39px); pointer-events: none; }
+    .military-glow { position: absolute; width: 700px; height: 700px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(139,45,245,0.08) 0%, transparent 65%); pointer-events: none; }
     .military-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; position: relative; }
-    @media (max-width: 900px) { .military-grid{grid-template-columns:1fr; gap:4rem} }
-
+    @media (max-width: 900px) { .military-grid { grid-template-columns: 1fr; gap: 4rem; } }
     .military-story p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.25rem; line-height: 1.85; }
-    .military-pullquote {
-      margin: 2rem 0; padding: 1.5rem 1.75rem;
-      border-left: 3px solid var(--accent);
-      background: rgba(139,45,245,0.08); border-radius: 0 12px 12px 0;
-    }
+    .military-pullquote { margin: 2rem 0; padding: 1.5rem 1.75rem; border-left: 3px solid var(--accent); background: rgba(139,45,245,0.08); border-radius: 0 12px 12px 0; }
     .military-pullquote p { color: var(--text) !important; font-size: 1.0rem !important; font-style: italic; margin: 0 !important; line-height: 1.7; }
-
-    /* Army credentials panel */
-    .army-panel {
-      background: rgba(139,45,245,0.06);
-      border: 1px solid rgba(139,45,245,0.2);
-      border-radius: 18px; padding: 2.5rem; position: relative; overflow: hidden;
-    }
-    .army-panel::before {
-      content: ''; position: absolute; inset: 0; border-radius: 18px;
-      background: linear-gradient(135deg, rgba(139,45,245,0.06) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .army-logo-container {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px; padding: 2rem 2.5rem;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 2rem;
-    }
-    .army-logo-container img {
-      width: 100%; max-width: 360px; height: auto;
-      filter: brightness(0) invert(1) drop-shadow(0 0 18px rgba(139,45,245,0.6));
-      opacity: 0.95;
-    }
+    .army-panel { background: rgba(139,45,245,0.06); border: 1px solid rgba(139,45,245,0.2); border-radius: 18px; padding: 2.5rem; position: relative; overflow: hidden; }
+    .army-panel::before { content: ''; position: absolute; inset: 0; border-radius: 18px; background: linear-gradient(135deg, rgba(139,45,245,0.06) 0%, transparent 60%); pointer-events: none; }
+    .army-logo-container { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; }
+    .army-logo-container img { width: 100%; max-width: 360px; height: auto; filter: brightness(0) invert(1) drop-shadow(0 0 18px rgba(139,45,245,0.6)); opacity: 0.95; }
     .record-grid { display: flex; flex-direction: column; gap: 0.8rem; }
-    .record-item {
-      display: flex; align-items: flex-start; gap: 1rem;
-      padding: 1rem 1.2rem; border-radius: 10px;
-      background: rgba(139,45,245,0.06); border: 1px solid rgba(139,45,245,0.14);
-      transition: border-color 0.2s, background 0.2s;
-    }
+    .record-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 1.2rem; border-radius: 10px; background: rgba(139,45,245,0.06); border: 1px solid rgba(139,45,245,0.14); transition: border-color 0.2s, background 0.2s; }
     .record-item:hover { background: rgba(139,45,245,0.12); border-color: rgba(139,45,245,0.35); }
-    .record-icon {
-      width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0;
-      background: rgba(139,45,245,0.18); border: 1px solid rgba(139,45,245,0.3);
-      display: flex; align-items: center; justify-content: center; font-size: 0.9rem;
-    }
+    .record-icon { width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0; background: rgba(139,45,245,0.18); border: 1px solid rgba(139,45,245,0.3); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
     .record-text strong { display: block; font-size: 0.86rem; font-weight: 700; color: #fff; margin-bottom: 0.1rem; }
     .record-text span { font-size: 0.76rem; color: var(--muted); }
-    .serving-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem;
-      padding: 0.6rem 1.1rem;
-      background: linear-gradient(90deg, rgba(139,45,245,0.25), rgba(77,0,184,0.2));
-      border: 1px solid rgba(139,45,245,0.45); border-radius: 100px;
-      font-size: 0.74rem; font-weight: 800; color: var(--hot); letter-spacing: 0.07em; text-transform: uppercase;
-    }
+    .serving-badge { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem; padding: 0.6rem 1.1rem; background: linear-gradient(90deg, rgba(139,45,245,0.25), rgba(77,0,184,0.2)); border: 1px solid rgba(139,45,245,0.45); border-radius: 100px; font-size: 0.74rem; font-weight: 800; color: var(--hot); letter-spacing: 0.07em; text-transform: uppercase; }
     .dot-pulse { width: 7px; height: 7px; border-radius: 50%; background: #a855f7; box-shadow: 0 0 8px #a855f7; animation: dpulse 1.8s ease-in-out infinite; }
     @keyframes dpulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.75)} }
-    .army-link {
-      display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.25rem;
-      font-size: 0.73rem; font-weight: 700; color: var(--muted); text-decoration: none;
-      text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.2s;
-    }
+    .army-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.25rem; font-size: 0.73rem; font-weight: 700; color: var(--muted); text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.2s; }
     .army-link:hover { color: var(--hot); }
 
     /* ── ABOUT ── */
     .about { padding: 7rem 2rem; background: var(--bg); position: relative; overflow: hidden; }
-    .about-cloud {
-      position: absolute; width: 480px; height: 660px; left: -50px; bottom: -50px;
-      background-image: url('https://static.wixstatic.com/media/4591aa_7427c0cde02b48eeadbdac8b88335116~mv2.png/v1/crop/x_0,y_56,w_2776,h_4071/fill/w_600,h_880,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/cloud_08.png');
-      background-size: contain; background-repeat: no-repeat;
-      opacity: 0.05; pointer-events: none;
-      filter: hue-rotate(265deg) saturate(0.7) brightness(1.9);
-      animation: floatB 30s ease-in-out infinite;
-    }
+    .about-cloud { position: absolute; width: 480px; height: 660px; left: -50px; bottom: -50px; background-image: url('https://static.wixstatic.com/media/4591aa_7427c0cde02b48eeadbdac8b88335116~mv2.png/v1/crop/x_0,y_56,w_2776,h_4071/fill/w_600,h_880,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/cloud_08.png'); background-size: contain; background-repeat: no-repeat; opacity: 0.05; pointer-events: none; filter: hue-rotate(265deg) saturate(0.7) brightness(1.9); animation: floatB 30s ease-in-out infinite; }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
-    @media (max-width: 900px) { .about-grid{grid-template-columns:1fr; gap:3rem} }
+    @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 3rem; } }
     .about-img-wrap { position: relative; }
     .about-img { border-radius: 16px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(139,45,245,0.18); }
     .about-img img { width: 100%; height: 480px; object-fit: cover; display: block; }
-    .about-badge {
-      position: absolute; bottom: -1.5rem; right: -1.5rem;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #fff; padding: 1.25rem 1.5rem; border-radius: 14px;
-      font-family: 'Syne',sans-serif; font-weight: 800; font-size: 0.9rem;
-      text-align: center; line-height: 1.25; box-shadow: 0 10px 30px rgba(139,45,245,0.55);
-    }
+    .about-badge { position: absolute; bottom: -1.5rem; right: -1.5rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; padding: 1.25rem 1.5rem; border-radius: 14px; font-family: 'Syne',sans-serif; font-weight: 800; font-size: 0.9rem; text-align: center; line-height: 1.25; box-shadow: 0 10px 30px rgba(139,45,245,0.55); }
     .about-text p { color: var(--muted); margin-bottom: 1.25rem; font-size: 0.95rem; }
-    .about-tagline {
-      font-family: 'Syne',sans-serif; font-weight: 800; font-size: 1.1rem;
-      color: #fff; margin: 1.5rem 0 1rem;
-      background: linear-gradient(90deg, var(--hot), var(--vivid));
-      -webkit-background-clip: text; background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+    .about-tagline { font-family: 'Syne',sans-serif; font-weight: 800; font-size: 1.1rem; margin: 1.5rem 0 1rem; background: linear-gradient(90deg, var(--hot), var(--vivid)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
     .client-pill { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; font-weight: 600; color: var(--hot); }
     .client-pill::before { content: '✦'; font-size: 0.55rem; }
     .about-clients { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 2rem; }
 
     /* ── GALLERY ── */
     .gallery { padding: 7rem 2rem; background: var(--bg2); }
-    .gallery-grid {
-      display: grid; grid-template-columns: 2fr 1fr 1fr;
-      grid-template-rows: 280px 280px;
-      gap: 8px; border-radius: 16px; overflow: hidden; margin-top: 3rem;
-    }
+    .gallery-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 280px 280px; gap: 8px; border-radius: 16px; overflow: hidden; margin-top: 3rem; }
     .g1 { grid-row: 1 / 3; }
     .gallery-item { overflow: hidden; position: relative; cursor: pointer; background: #0b021a; }
     .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
     .gallery-item:hover img { transform: scale(1.1); }
-    .gallery-item::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(139,45,245,0.22), transparent);
-      opacity: 0; transition: opacity 0.35s;
-    }
+    .gallery-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(139,45,245,0.22), transparent); opacity: 0; transition: opacity 0.35s; }
     .gallery-item:hover::after { opacity: 1; }
     @media (max-width: 768px) { .gallery-grid{grid-template-columns:1fr 1fr; grid-template-rows:auto} .g1{grid-row:auto} }
 
     /* ── STATS ── */
-    .stats {
-      padding: 6rem 2rem; position: relative; overflow: hidden;
-      background: linear-gradient(135deg, #1a0040 0%, #3b007a 40%, #7b20e0 80%, #9333ea 100%);
-    }
-    .stats::before {
-      content: ''; position: absolute; inset: 0; pointer-events: none;
-      background-image: url('https://static.wixstatic.com/media/4591aa_7bc21e488c86427db75510cdd4d756c1~mv2.png/v1/crop/x_0,y_0,w_4126,h_1934/fill/w_1404,h_658,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/cloud_09.png');
-      background-size: cover; background-position: center; opacity: 0.08;
-    }
-    .stats-bolt-l, .stats-bolt-r {
-      position: absolute; width: 160px; height: 260px; pointer-events: none;
-      background: rgba(255,255,255,0.06);
-      clip-path: polygon(60% 0%, 15% 48%, 44% 48%, 25% 100%, 85% 40%, 48% 40%);
-    }
+    .stats { padding: 6rem 2rem; position: relative; overflow: hidden; background: linear-gradient(135deg, #1a0040 0%, #3b007a 40%, #7b20e0 80%, #9333ea 100%); clip-path: polygon(0 4%, 100% 0, 100% 96%, 0 100%); margin: -30px 0; padding: 8rem 2rem; }
+    .stats::before { content: ''; position: absolute; inset: 0; pointer-events: none; background-image: url('https://static.wixstatic.com/media/4591aa_7bc21e488c86427db75510cdd4d756c1~mv2.png/v1/crop/x_0,y_0,w_4126,h_1934/fill/w_1404,h_658,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/cloud_09.png'); background-size: cover; background-position: center; opacity: 0.08; }
+    .stats-bolt-l, .stats-bolt-r { position: absolute; width: 160px; height: 260px; pointer-events: none; background: rgba(255,255,255,0.06); clip-path: polygon(60% 0%, 15% 48%, 44% 48%, 25% 100%, 85% 40%, 48% 40%); }
     .stats-bolt-l { left: 4%; top: 50%; transform: translateY(-50%); }
     .stats-bolt-r { right: 4%; top: 50%; transform: translateY(-50%) scaleX(-1); }
     .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; position: relative; }
@@ -434,16 +263,13 @@
     .stat-item .lbl { font-size: 0.78rem; color: rgba(255,255,255,0.7); margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 0.1em; }
 
     /* ── REVIEWS ── */
-    .reviews { padding: 7rem 2rem; background: var(--bg); }
+    .reviews { padding: 7rem 2rem 7rem; background: var(--bg); }
     .reviews-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3.5rem; flex-wrap: wrap; gap: 2rem; }
     .rating-num { font-family: 'Syne',sans-serif; font-size: 5rem; font-weight: 800; color: #fff; line-height: 1; }
     .rating-stars { color: #f59e0b; font-size: 1.2rem; margin-top: 0.2rem; }
     .rating-label { font-size: 0.74rem; color: var(--muted); margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.08em; }
     .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-    .review-card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 2rem;
-      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-    }
+    .review-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
     .review-card:hover { border-color: rgba(139,45,245,0.45); box-shadow: 0 12px 40px rgba(0,0,0,0.45); transform: translateY(-4px); }
     .review-stars { color: #f59e0b; font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 0.04em; }
     .review-text { font-size: 0.9rem; color: var(--muted); line-height: 1.78; margin-bottom: 1.5rem; font-style: italic; }
@@ -459,78 +285,35 @@
     @media (max-width: 900px) { .contact-grid{grid-template-columns:1fr; gap:3rem} }
     .contact-info p { color: var(--muted); font-size: 0.95rem; margin: 1rem 0 2.5rem; line-height: 1.82; }
     .contact-detail { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; font-size: 0.9rem; color: var(--text); }
-    .contact-icon {
-      width: 42px; height: 42px; background: rgba(139,45,245,0.1);
-      border: 1px solid rgba(139,45,245,0.25); border-radius: 10px;
-      display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
-    }
+    .contact-icon { width: 42px; height: 42px; background: rgba(139,45,245,0.1); border: 1px solid rgba(139,45,245,0.25); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
     .contact-form-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 2.5rem; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
     @media (max-width: 600px) { .form-row{grid-template-columns:1fr} }
     .form-group { margin-bottom: 1rem; }
     label { display: block; font-size: 0.68rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
-    input, select, textarea {
-      width: 100%; padding: 0.82rem 1rem;
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 8px; color: var(--text); font-size: 0.9rem;
-      font-family: 'Inter',sans-serif; outline: none; appearance: none;
-      transition: border-color 0.2s, background 0.2s;
-    }
+    input, select, textarea { width: 100%; padding: 0.82rem 1rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; color: var(--text); font-size: 0.9rem; font-family: 'Inter',sans-serif; outline: none; appearance: none; transition: border-color 0.2s, background 0.2s; }
     input::placeholder, textarea::placeholder { color: rgba(215,190,255,0.25); }
     select option { background: var(--bg2); }
     input:focus, select:focus, textarea:focus { border-color: var(--accent); background: rgba(139,45,245,0.07); }
     textarea { min-height: 120px; resize: vertical; }
-    .form-submit {
-      width: 100%; padding: 1rem;
-      background: linear-gradient(90deg, var(--accent2), var(--accent) 60%, #9333ea);
-      color: #fff; border: none; border-radius: 8px; font-size: 0.88rem; font-weight: 800;
-      font-family: 'Inter',sans-serif; cursor: pointer; letter-spacing: 0.08em;
-      text-transform: uppercase; margin-top: 0.5rem;
-      transition: opacity 0.2s, box-shadow 0.2s, transform 0.15s;
-    }
+    .form-submit { width: 100%; padding: 1rem; background: linear-gradient(90deg, var(--accent2), var(--accent) 60%, #9333ea); color: #fff; border: none; border-radius: 8px; font-size: 0.88rem; font-weight: 800; font-family: 'Inter',sans-serif; cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.5rem; transition: opacity 0.2s, box-shadow 0.2s, transform 0.15s; }
     .form-submit:hover { opacity: 0.9; box-shadow: 0 8px 30px rgba(139,45,245,0.55); transform: translateY(-1px); }
 
-    /* ── MAP SECTION ── */
+    /* ── MAP ── */
     .map-section { background: var(--bg3); padding: 7rem 2rem; position: relative; overflow: hidden; }
-    .map-section::before {
-      content: ''; position: absolute; inset: 0;
-      background: repeating-linear-gradient(-55deg, transparent, transparent 38px, rgba(139,45,245,0.015) 38px, rgba(139,45,245,0.015) 39px);
-      pointer-events: none;
-    }
+    .map-section::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-55deg, transparent, transparent 38px, rgba(139,45,245,0.015) 38px, rgba(139,45,245,0.015) 39px); pointer-events: none; }
     .map-grid { display: grid; grid-template-columns: 1fr 1.8fr; gap: 4rem; align-items: center; position: relative; }
     @media (max-width: 900px) { .map-grid{grid-template-columns:1fr; gap:3rem} }
     .map-info h3 { font-family: 'Syne',sans-serif; font-size: 1.6rem; font-weight: 800; margin-bottom: 1rem; }
     .map-info p { color: var(--muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 2rem; }
-    .map-address-line {
-      display: flex; align-items: flex-start; gap: 0.85rem; margin-bottom: 1rem;
-      font-size: 0.9rem; color: var(--text);
-    }
-    .map-address-line .icon {
-      width: 38px; height: 38px; flex-shrink: 0; border-radius: 9px;
-      background: rgba(139,45,245,0.1); border: 1px solid rgba(139,45,245,0.22);
-      display: flex; align-items: center; justify-content: center; font-size: 0.95rem;
-    }
-    .map-embed-wrap {
-      border-radius: 16px; overflow: hidden;
-      border: 1px solid rgba(139,45,245,0.2);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-      height: 400px; position: relative;
-    }
-    .map-embed-wrap iframe {
-      width: 100%; height: 100%; border: none; display: block;
-      filter: invert(0.9) hue-rotate(195deg) saturate(0.65) brightness(0.88);
-    }
-    .map-embed-wrap::after {
-      content: ''; position: absolute; inset: 0; pointer-events: none;
-      box-shadow: inset 0 0 0 1px rgba(139,45,245,0.2);
-      border-radius: 16px;
-    }
+    .map-address-line { display: flex; align-items: flex-start; gap: 0.85rem; margin-bottom: 1rem; font-size: 0.9rem; color: var(--text); }
+    .map-address-line .icon { width: 38px; height: 38px; flex-shrink: 0; border-radius: 9px; background: rgba(139,45,245,0.1); border: 1px solid rgba(139,45,245,0.22); display: flex; align-items: center; justify-content: center; font-size: 0.95rem; }
+    .map-embed-wrap { border-radius: 16px; overflow: hidden; border: 1px solid rgba(139,45,245,0.2); box-shadow: 0 20px 60px rgba(0,0,0,0.5); height: 400px; position: relative; }
+    .map-embed-wrap iframe { width: 100%; height: 100%; border: none; display: block; filter: invert(0.9) hue-rotate(195deg) saturate(0.65) brightness(0.88); }
+    .map-embed-wrap::after { content: ''; position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 0 1px rgba(139,45,245,0.2); border-radius: 16px; }
 
     /* ── FOOTER ── */
-    footer {
-      background: #03000a; padding: 3.5rem 2rem;
-      border-top: 1px solid rgba(139,45,245,0.1);
-    }
+    footer { background: #03000a; padding: 3.5rem 2rem; border-top: 1px solid rgba(139,45,245,0.1); }
     .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
     .footer-logo img { height: 32px; filter: brightness(0) invert(1); opacity: 0.7; }
     .footer-links { display: flex; gap: 2rem; }
@@ -546,572 +329,506 @@
 </head>
 <body>
 
-  <!-- FULL-PAGE AMBIENT LIGHTNING -->
-  <canvas id="bg-lightning"></canvas>
+<canvas id="bg-lightning"></canvas>
 
-  <div class="announce">
-    ⚡ Military-grade precision. Christchurch-built. <a href="#contact">Get Your Free Quote</a>
+<div class="announce">⚡ Military-grade precision. Christchurch-built. <a href="#contact">Get Your Free Quote</a></div>
+
+<nav id="navbar">
+  <a href="#" class="nav-logo"><img src="https://static.wixstatic.com/media/4591aa_e912de59ad8646e7832319f430d11e12~mv2.png" alt="Storm Signs" /></a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#military">Our Story</a>
+    <a href="#gallery">Work</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
   </div>
+  <div class="nav-right"><a href="#contact" class="nav-cta">⚡ Get a Quote</a></div>
+</nav>
 
-  <nav id="navbar">
-    <a href="#" class="nav-logo">
-      <img src="https://static.wixstatic.com/media/4591aa_e912de59ad8646e7832319f430d11e12~mv2.png" alt="Storm Signs" />
-    </a>
-    <div class="nav-links">
+<!-- HERO -->
+<section class="hero" id="home">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-bg"></div>
+  <div class="hero-atmo"></div>
+  <div class="hero-bolt-shape"></div>
+  <div class="cloud-deco cloud-a"></div>
+  <div class="cloud-deco cloud-b"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">⚡ Christchurch's Signage Experts</div>
+    <h1>Your Vision.<br /><span class="shimmer">Our Mission.</span><br />We're Ready.</h1>
+    <p class="hero-sub">From bold exterior branding to precision vehicle wraps, Storm Signs delivers military-grade craftsmanship for every project, every time.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">⚡ Get a Free Quote</a>
+      <a href="#gallery" class="btn-ghost">View Our Work</a>
+    </div>
+    <div class="hero-badges">
+      <div class="hero-badge"><div class="num counter" data-target="3">0</div><div class="lbl">Years in Business</div></div>
+      <div class="hero-badge"><div class="num counter" data-target="150">0</div><div class="lbl">Projects Delivered</div></div>
+      <div class="hero-badge"><div class="num counter" data-target="5">0</div><div class="lbl">Star Rated</div></div>
+      <div class="hero-badge"><div class="num">NZ</div><div class="lbl">Defence Force Approved</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Interior Signage</span><span class="bolt">⚡</span><span>Exterior Signage</span><span class="bolt">⚡</span><span>Vehicle Wraps</span><span class="bolt">⚡</span><span>Event Signage</span><span class="bolt">⚡</span><span>Custom Solutions</span><span class="bolt">⚡</span><span>Fleet Branding</span><span class="bolt">⚡</span><span>Wayfinding</span><span class="bolt">⚡</span><span>Wall Graphics</span><span class="bolt">⚡</span><span>Building Branding</span><span class="bolt">⚡</span>
+    <span>Interior Signage</span><span class="bolt">⚡</span><span>Exterior Signage</span><span class="bolt">⚡</span><span>Vehicle Wraps</span><span class="bolt">⚡</span><span>Event Signage</span><span class="bolt">⚡</span><span>Custom Solutions</span><span class="bolt">⚡</span><span>Fleet Branding</span><span class="bolt">⚡</span><span>Wayfinding</span><span class="bolt">⚡</span><span>Wall Graphics</span><span class="bolt">⚡</span><span>Building Branding</span><span class="bolt">⚡</span>
+  </div>
+</div>
+
+<div class="brand-strip">
+  <div class="brand-track">
+    <img src="https://static.wixstatic.com/media/4591aa_e912de59ad8646e7832319f430d11e12~mv2.png/v1/crop/x_38,y_13,w_3713,h_1086/fill/w_820,h_250,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/storm_brand_1.png" alt="Storm Signs" />
+    <img src="https://static.wixstatic.com/media/4591aa_f517870d25fe410bb9bf0ebcffd590b7~mv2.png/v1/fill/w_1120,h_326,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/storm_brand_2.png" alt="Storm Signs" />
+    <img src="https://static.wixstatic.com/media/4591aa_3cb900a435df44bfbdcab20215e251f9~mv2.png/v1/crop/x_0,y_323,w_1387,h_573/fill/w_692,h_426,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/STORM%20SIGNS.png" alt="Storm Signs work" />
+    <img src="https://static.wixstatic.com/media/4591aa_e912de59ad8646e7832319f430d11e12~mv2.png/v1/crop/x_38,y_13,w_3713,h_1086/fill/w_820,h_250,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/storm_brand_1.png" alt="Storm Signs" />
+    <img src="https://static.wixstatic.com/media/4591aa_f517870d25fe410bb9bf0ebcffd590b7~mv2.png/v1/fill/w_1120,h_326,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/storm_brand_2.png" alt="Storm Signs" />
+    <img src="https://static.wixstatic.com/media/4591aa_3cb900a435df44bfbdcab20215e251f9~mv2.png/v1/crop/x_0,y_323,w_1387,h_573/fill/w_692,h_426,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/STORM%20SIGNS.png" alt="Storm Signs work" />
+  </div>
+</div>
+
+<div class="bolt-div"><span>⚡</span></div>
+
+<!-- SERVICES — EDITORIAL REDESIGN -->
+<section class="services" id="services">
+  <div class="services-cloud"></div>
+  <div class="container">
+    <div class="services-intro">
+      <div>
+        <div class="glow-line reveal"></div>
+        <p class="section-label reveal">⚡ What We Do</p>
+        <h2 class="section-title reveal d1">Every sign tells a story.<br />Let's make yours<br />unforgettable.</h2>
+      </div>
+      <p class="section-sub reveal d2" style="align-self:end;">Aaron and the team run every job the way the Army trained him — brief it properly, plan it right, execute with zero room for average. That's what you get with every single project.</p>
+    </div>
+
+    <!-- Two photo feature cards -->
+    <div class="services-features">
+      <div class="service-feat reveal">
+        <img src="https://static.wixstatic.com/media/4591aa_cd9cba1235fb4384a7d0478bdefcf701~mv2.jpg" alt="Interior signage" loading="lazy" />
+        <div class="service-feat-overlay">
+          <div class="service-feat-tag">⚡ Interior</div>
+          <h3>Interior Signage</h3>
+          <p>Your workspace should tell your brand story the moment someone walks in. From office signage to full wall murals, we make interiors work hard.</p>
+        </div>
+      </div>
+      <div class="service-feat reveal d1">
+        <img src="https://static.wixstatic.com/media/4591aa_3cb900a435df44bfbdcab20215e251f9~mv2.png/v1/crop/x_0,y_0,w_1387,h_896/fill/w_900,h_580,al_c,q_88,enc_avif,quality_auto/STORM%20SIGNS.png" alt="Exterior signage" loading="lazy" />
+        <div class="service-feat-overlay">
+          <div class="service-feat-tag">⚡ Exterior</div>
+          <h3>Exterior Signage</h3>
+          <p>Storefront fascias, building branding, outdoor displays. Bold, weatherproof signs that stop people in their tracks from the street.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Four remaining services in left-border style -->
+    <div class="services-list">
+      <div class="service-item reveal">
+        <h3>Vehicle Wraps and Fleet Branding</h3>
+        <p>Full wraps, partial graphics, full fleet branding. Every vehicle becomes a moving billboard working for you around the clock.</p>
+      </div>
+      <div class="service-item reveal d1">
+        <h3>Event Signage</h3>
+        <p>Banners, backdrops, pull-up displays. Professional event signage turned around fast and built to impress at any scale.</p>
+      </div>
+      <div class="service-item reveal d2">
+        <h3>Specialist Signage</h3>
+        <p>Airport, hospital, government and education environments. We understand compliance, durability and high-traffic demands inside out.</p>
+      </div>
+      <div class="service-item reveal d3">
+        <h3>Custom Design</h3>
+        <p>No templates, no shortcuts. Every project starts with your brief and ends with something uniquely yours, designed right here in-house.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="showcase">
+  <img src="https://static.wixstatic.com/media/4591aa_6d851a84091142f1bc61d76f3def27d2~mv2.png/v1/fill/w_1200,h_812,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/4591aa_6d851a84091142f1bc61d76f3def27d2~mv2.png" alt="Storm Signs showcase" loading="lazy" />
+</div>
+
+<div class="bolt-div" style="--bgcolor:var(--bg2)"><span>⚡</span></div>
+
+<!-- VEHICLE WRAPS — FULL VEHICLE SHOWCASE -->
+<section class="vehicle-section" id="vehicles">
+  <div class="container">
+    <div class="vehicle-grid">
+      <div class="vehicle-img-wrap reveal">
+        <img src="https://static.wixstatic.com/media/4591aa_4d7671b632134d7b9fc04d8f5a62d5e2~mv2.jpg/v1/fill/w_900,h_1100,al_c,q_88,enc_avif,quality_auto/23-2%20copy.jpg" alt="Storm Signs vehicle wrap" loading="lazy" />
+      </div>
+      <div class="vehicle-text">
+        <div class="glow-line reveal"></div>
+        <p class="section-label reveal">⚡ Vehicle Wraps</p>
+        <h2 class="section-title reveal d1">Your Fleet is<br />Your Brand.</h2>
+        <p class="reveal d2">A wrapped vehicle is one of the most powerful marketing tools a business can have. It works while you drive, while you're parked, and everywhere in between.</p>
+        <p class="reveal d2">We handle everything from single-vehicle graphics to full fleet rebrands. Design, print, and installation all done in-house so nothing gets lost in the middle.</p>
+        <div class="vehicle-stats reveal d3">
+          <div class="vehicle-stat"><div class="num">24/7</div><div class="lbl">Mobile Advertising</div></div>
+          <div class="vehicle-stat"><div class="num">1</div><div class="lbl">Stop Shop</div></div>
+          <div class="vehicle-stat"><div class="num">100%</div><div class="lbl">In-House</div></div>
+        </div>
+        <div class="reveal d4">
+          <a href="#contact" class="btn-primary" style="display:inline-flex;">⚡ Get a Wrap Quote</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bolt-div" style="--bgcolor:var(--bg)"><span>⚡</span></div>
+
+<!-- MILITARY HERITAGE -->
+<section class="military" id="military">
+  <div class="military-glow"></div>
+  <div class="container">
+    <div class="military-grid">
+      <div class="military-story">
+        <div class="glow-line reveal"></div>
+        <p class="section-label reveal">⚡ Military Heritage</p>
+        <h2 class="section-title reveal d1">Built on<br />Two Decades<br />of Service</h2>
+        <p class="reveal d2">Storm Signs was founded in 2022 by New Zealand Army Sergeant Aaron Hoeflich. The company is built on the values of discipline, teamwork, and excellence forged over nearly two decades of military service.</p>
+        <div class="military-pullquote reveal d3">
+          <p>"Our foundation is built on the discipline, dedication, and teamwork forged over nearly two decades of service in the New Zealand Army."</p>
+        </div>
+        <p class="reveal d3">Aaron joined the Army at 18 and steadily rose through the ranks to Sergeant. His career includes a six-month operational deployment in Afghanistan and a role as a military instructor, mentoring new recruits and instilling the very principles that guide Storm Signs today.</p>
+        <p class="reveal d4">Still actively serving, he brings military precision and unwavering reliability to every single project.</p>
+      </div>
+      <div class="army-panel reveal d2">
+        <div class="army-logo-container">
+          <img src="https://static.wixstatic.com/media/4591aa_b480bad50d4b44c6bfef75b99474037f~mv2.png/v1/crop/x_96,y_0,w_1114,h_282/fill/w_1335,h_338,al_c,lg_1,q_90,enc_avif,quality_auto/nzarmy.png" alt="New Zealand Army" />
+        </div>
+        <div class="record-grid">
+          <div class="record-item"><div class="record-icon">🎖</div><div class="record-text"><strong>Current Rank: Sergeant</strong><span>New Zealand Army</span></div></div>
+          <div class="record-item"><div class="record-icon">🌍</div><div class="record-text"><strong>Afghanistan Deployment</strong><span>Six-month operational tour of duty</span></div></div>
+          <div class="record-item"><div class="record-icon">⏱</div><div class="record-text"><strong>Nearly 20 Years of Service</strong><span>Joined the NZ Army at 18 years old</span></div></div>
+          <div class="record-item"><div class="record-icon">👥</div><div class="record-text"><strong>Military Instructor</strong><span>Trained and mentored new recruits</span></div></div>
+          <div class="record-item"><div class="record-icon">✅</div><div class="record-text"><strong>Defence Force Approved</strong><span>Trusted supplier to the NZDF</span></div></div>
+        </div>
+        <div class="serving-badge"><div class="dot-pulse"></div> Still Actively Serving, 2026</div>
+        <a href="https://www.defencecareers.mil.nz/army/careers" target="_blank" rel="noopener" class="army-link">Visit the NZ Army Online →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bolt-div" style="--bgcolor:var(--bg)"><span>⚡</span></div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-cloud"></div>
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <div class="about-img">
+          <img src="https://static.wixstatic.com/media/4591aa_cd9cba1235fb4384a7d0478bdefcf701~mv2.jpg" alt="Storm Signs" loading="lazy" />
+        </div>
+        <div class="about-badge">Founded<br /><span style="font-size:1.8rem;">2022</span></div>
+      </div>
+      <div>
+        <div class="glow-line reveal"></div>
+        <p class="section-label reveal">⚡ About Storm Signs</p>
+        <h2 class="section-title reveal d1">Precision-Driven.<br />Mission-Ready.</h2>
+        <p class="reveal d2">Based in Rolleston, Christchurch, Storm Signs has built a reputation for delivering on time, on brief, and above expectation for clients ranging from local businesses to national organisations.</p>
+        <p class="about-tagline reveal d3">Experience. Integrity. Results. Always.</p>
+        <div class="about-clients reveal d3">
+          <p style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.75rem;">Trusted by</p>
+          <div class="client-pill">New Zealand Defence Force</div>
+          <div class="client-pill">Air New Zealand</div>
+          <div class="client-pill">Corde Construction</div>
+          <div class="client-pill">Rolleston and Christchurch Businesses</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bolt-div"><span>⚡</span></div>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="glow-line reveal"></div>
+    <p class="section-label reveal">⚡ Our Work</p>
+    <h2 class="section-title reveal d1">Built to be Seen</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item g1">
+        <img src="https://static.wixstatic.com/media/4591aa_3cb900a435df44bfbdcab20215e251f9~mv2.png/v1/crop/x_0,y_323,w_1387,h_573/fill/w_695,h_573,al_c,q_90,enc_avif,quality_auto/STORM%20SIGNS.png" alt="Storm Signs showcase" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://static.wixstatic.com/media/4591aa_972a5b73f9e54b49a0fd93ef0bdcf89c~mv2.jpg" alt="Signage work" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://static.wixstatic.com/media/4591aa_682bc94b3d7b4de2afa196e607de1f36f000.jpg/v1/fill/w_500,h_400,al_c,q_85,enc_avif,quality_auto/img.jpg" alt="Storm Signs project" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://static.wixstatic.com/media/4591aa_6522a197d70e47dcb1784a54492cd219~mv2.webp/v1/fill/w_580,h_432,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/event-signs.webp" alt="Event signage" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://static.wixstatic.com/media/4591aa_66486c5d8cc141eaa20b5d9bad3e7c22~mv2.jpg/v1/crop/x_23,y_0,w_593,h_480/fill/w_580,h_432,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/free-standing-banner.jpg" alt="Free-standing banner" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-bolt-l"></div>
+  <div class="stats-bolt-r"></div>
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal"><div class="num"><span class="counter" data-target="150">0</span>+</div><div class="lbl">Projects Completed</div></div>
+      <div class="stat-item reveal d1"><div class="num"><span class="counter" data-target="100">0</span>%</div><div class="lbl">On-Time Delivery</div></div>
+      <div class="stat-item reveal d2"><div class="num"><span class="counter" data-target="20">0</span></div><div class="lbl">Years of Service</div></div>
+      <div class="stat-item reveal d3"><div class="num">5★</div><div class="lbl">Google Rating</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="bolt-div" style="--bgcolor:var(--bg)"><span>⚡</span></div>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="reviews-header">
+      <div>
+        <div class="glow-line reveal"></div>
+        <p class="section-label reveal">⚡ Customer Reviews</p>
+        <h2 class="section-title reveal d1">What Clients Say</h2>
+      </div>
+      <div class="reveal d2" style="text-align:right;">
+        <div class="rating-num">5.0</div>
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-label">Google Reviews</div>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Exceptional service and craftsmanship. Aaron and the team went above and beyond. The final result looked incredible and was delivered ahead of schedule."</p>
+        <div class="review-author"><div class="review-avatar">JB</div><div><div class="review-name">John B.</div><div class="review-date">Rolleston, Christchurch</div></div></div>
+      </div>
+      <div class="review-card reveal d1">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Professional from start to finish. The vehicle wrap for our fleet was flawless, precise, clean and exactly what we envisioned. Highly recommended."</p>
+        <div class="review-author"><div class="review-avatar">SK</div><div><div class="review-name">Sarah K.</div><div class="review-date">Christchurch</div></div></div>
+      </div>
+      <div class="review-card reveal d2">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Storm Signs handled our entire office fit-out with incredible attention to detail. The wayfinding system they designed is both functional and stunning."</p>
+        <div class="review-author"><div class="review-avatar">MT</div><div><div class="review-name">Mark T.</div><div class="review-date">Canterbury</div></div></div>
+      </div>
+    </div>
+    <div class="reviews-cta reveal"><a href="review.html" class="btn-primary" style="margin:0 auto;display:inline-flex;">⭐ Leave a Review</a></div>
+  </div>
+</section>
+
+<div class="bolt-div" style="--bgcolor:var(--bg2)"><span>⚡</span></div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <div class="glow-line reveal"></div>
+        <p class="section-label reveal">⚡ Get In Touch</p>
+        <h2 class="section-title reveal d1">Ready to Start<br />Your Project?</h2>
+        <p class="contact-info reveal d2">Tell us about your signage needs and we'll come back with a fast, competitive quote. No obligation, just straight answers from people who know the craft.</p>
+        <div class="reveal d3">
+          <div class="contact-detail"><div class="contact-icon">📍</div><span>5/25 Hynds Drive, Rolleston, Christchurch 7614</span></div>
+          <div class="contact-detail"><div class="contact-icon">📞</div><span>03 347 8690</span></div>
+          <div class="contact-detail"><div class="contact-icon">✉️</div><span>info@stormsigns.co.nz</span></div>
+        </div>
+      </div>
+      <div class="contact-form-wrap reveal d2">
+        <form action="https://api.staticforms.xyz/submit" method="post">
+          <input type="hidden" name="apiKey" value="sf_768da8d33927e7f4f241d0a6" />
+          <div class="form-row">
+            <div class="form-group"><label>First Name</label><input type="text" name="firstName" placeholder="First name" required /></div>
+            <div class="form-group"><label>Last Name</label><input type="text" name="lastName" placeholder="Last name" required /></div>
+          </div>
+          <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="your@email.com" required /></div>
+          <div class="form-group"><label>Phone</label><input type="tel" name="phone" placeholder="Your phone number" /></div>
+          <div class="form-group">
+            <label>Service Required</label>
+            <select name="service" required>
+              <option value="" disabled selected>What do you need?</option>
+              <option value="interior">Interior Signage</option>
+              <option value="exterior">Exterior Signage</option>
+              <option value="vehicle">Vehicle Wraps and Graphics</option>
+              <option value="event">Event Signage</option>
+              <option value="specialist">Specialist Signage</option>
+              <option value="custom">Custom Design</option>
+              <option value="other">Other / Not Sure</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Project Details</label><textarea name="message" placeholder="Tell us about your project, size, timeline, and anything else relevant..." required></textarea></div>
+          <button type="submit" class="form-submit">⚡ Send Enquiry</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section" id="location">
+  <div class="container">
+    <div class="map-grid">
+      <div>
+        <div class="glow-line reveal"></div>
+        <p class="section-label reveal">⚡ Find Us</p>
+        <h3 class="reveal d1" style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;margin-bottom:1rem;">Visit Our Workshop</h3>
+        <p class="reveal d2" style="color:var(--muted);font-size:0.95rem;line-height:1.8;margin-bottom:2rem;">Based in Rolleston, Christchurch. Come in and discuss your project with the team.</p>
+        <div class="reveal d3">
+          <div class="map-address-line"><div class="icon">📍</div><div><strong>5/25 Hynds Drive</strong><br /><span style="color:var(--muted);font-size:0.88rem;">Rolleston, Christchurch 7614</span></div></div>
+          <div class="map-address-line"><div class="icon">📞</div><div><span>03 347 8690</span></div></div>
+          <div class="map-address-line"><div class="icon">✉️</div><div><span>info@stormsigns.co.nz</span></div></div>
+        </div>
+      </div>
+      <div class="map-embed-wrap reveal d2">
+        <iframe src="https://maps.google.com/maps?q=25+Hynds+Drive+Rolleston+Christchurch+7614+New+Zealand&output=embed&z=15" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><img src="https://static.wixstatic.com/media/4591aa_e912de59ad8646e7832319f430d11e12~mv2.png" alt="Storm Signs" /></div>
+    <div class="footer-links">
       <a href="#services">Services</a>
       <a href="#military">Our Story</a>
       <a href="#gallery">Work</a>
-      <a href="#reviews">Reviews</a>
+      <a href="#location">Location</a>
       <a href="#contact">Contact</a>
     </div>
-    <div class="nav-right"><a href="#contact" class="nav-cta">⚡ Get a Quote</a></div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <canvas id="hero-canvas"></canvas>
-    <div class="hero-bg"></div>
-    <div class="hero-atmosphere"></div>
-    <div class="hero-bolt-bg"></div>
-    <div class="cloud-deco cloud-a"></div>
-    <div class="cloud-deco cloud-b"></div>
-    <div class="hero-content">
-      <div class="hero-eyebrow">⚡ Christchurch's Signage Experts</div>
-      <h1>Your Vision.<br /><span class="shimmer">Our Mission.</span><br />We're Ready.</h1>
-      <p class="hero-sub">From bold exterior branding to precision vehicle wraps, Storm Signs delivers military-grade craftsmanship for every project, every time.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">⚡ Get a Free Quote</a>
-        <a href="#gallery" class="btn-ghost">View Our Work</a>
-      </div>
-      <div class="hero-badges">
-        <div class="hero-badge"><div class="num counter" data-target="3">0</div><div class="lbl">Years in Business</div></div>
-        <div class="hero-badge"><div class="num counter" data-target="150">0</div><div class="lbl">Projects Delivered</div></div>
-        <div class="hero-badge"><div class="num counter" data-target="5">0</div><div class="lbl">Star Rated</div></div>
-        <div class="hero-badge"><div class="num">NZ</div><div class="lbl">Defence Force Approved</div></div>
-      </div>
-    </div>
-  </section>
-
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      <span>Interior Signage</span><span class="bolt">⚡</span>
-      <span>Exterior Signage</span><span class="bolt">⚡</span>
-      <span>Vehicle Wraps</span><span class="bolt">⚡</span>
-      <span>Event Signage</span><span class="bolt">⚡</span>
-      <span>Custom Solutions</span><span class="bolt">⚡</span>
-      <span>Fleet Branding</span><span class="bolt">⚡</span>
-      <span>Wayfinding</span><span class="bolt">⚡</span>
-      <span>Wall Graphics</span><span class="bolt">⚡</span>
-      <span>Building Branding</span><span class="bolt">⚡</span>
-      <span>Interior Signage</span><span class="bolt">⚡</span>
-      <span>Exterior Signage</span><span class="bolt">⚡</span>
-      <span>Vehicle Wraps</span><span class="bolt">⚡</span>
-      <span>Event Signage</span><span class="bolt">⚡</span>
-      <span>Custom Solutions</span><span class="bolt">⚡</span>
-      <span>Fleet Branding</span><span class="bolt">⚡</span>
-      <span>Wayfinding</span><span class="bolt">⚡</span>
-      <span>Wall Graphics</span><span class="bolt">⚡</span>
-      <span>Building Branding</span><span class="bolt">⚡</span>
-    </div>
+    <div class="footer-copy">2025 Storm Signs Ltd, Rolleston, Christchurch</div>
   </div>
+</footer>
 
-  <div class="brand-strip">
-    <div class="brand-track">
-      <img src="https://static.wixstatic.com/media/4591aa_e912de59ad8646e7832319f430d11e12~mv2.png/v1/crop/x_38,y_13,w_3713,h_1086/fill/w_820,h_250,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/storm_brand_1.png" alt="Storm Signs" />
-      <img src="https://static.wixstatic.com/media/4591aa_f517870d25fe410bb9bf0ebcffd590b7~mv2.png/v1/fill/w_1120,h_326,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/storm_brand_2.png" alt="Storm Signs" />
-      <img src="https://static.wixstatic.com/media/4591aa_3cb900a435df44bfbdcab20215e251f9~mv2.png/v1/crop/x_0,y_323,w_1387,h_573/fill/w_692,h_426,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/STORM%20SIGNS.png" alt="Storm Signs work" />
-      <img src="https://static.wixstatic.com/media/4591aa_e912de59ad8646e7832319f430d11e12~mv2.png/v1/crop/x_38,y_13,w_3713,h_1086/fill/w_820,h_250,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/storm_brand_1.png" alt="Storm Signs" />
-      <img src="https://static.wixstatic.com/media/4591aa_f517870d25fe410bb9bf0ebcffd590b7~mv2.png/v1/fill/w_1120,h_326,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/storm_brand_2.png" alt="Storm Signs" />
-      <img src="https://static.wixstatic.com/media/4591aa_3cb900a435df44bfbdcab20215e251f9~mv2.png/v1/crop/x_0,y_323,w_1387,h_573/fill/w_692,h_426,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/STORM%20SIGNS.png" alt="Storm Signs work" />
-    </div>
-  </div>
+<script>
+  // Nav
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), {passive:true});
 
-  <div class="bolt-div"><span>⚡</span></div>
+  // Reveal
+  const revObs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
+  }), {threshold: 0.1});
+  document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 
-  <section class="services" id="services">
-    <div class="services-cloud"></div>
-    <div class="container">
-      <div class="services-header">
-        <div>
-          <div class="glow-line reveal"></div>
-          <p class="section-label reveal">⚡ What We Do</p>
-          <h2 class="section-title reveal d1">Signage Built<br />to Last</h2>
-        </div>
-        <p class="section-sub reveal d2">From a single storefront sign to a full fleet wrap, we handle every scale with the same level of precision and care.</p>
-      </div>
-      <div class="services-grid">
-        <div class="service-card reveal">
-          <div class="service-icon">🏢</div>
-          <h3>Interior Signage</h3>
-          <p>Office signs, wall graphics, wayfinding systems. We make your interior communicate your brand from the moment people walk in.</p>
-        </div>
-        <div class="service-card reveal d1">
-          <div class="service-icon">🏗️</div>
-          <h3>Exterior Signage</h3>
-          <p>Storefront fascias, building branding, outdoor displays. Bold, weatherproof signage that gets you noticed from the street.</p>
-        </div>
-        <div class="service-card reveal d2">
-          <div class="service-icon">🚐</div>
-          <h3>Vehicle Wraps</h3>
-          <p>Full wraps, partial graphics, fleet branding. Turn your vehicles into mobile billboards that work for you 24/7.</p>
-        </div>
-        <div class="service-card reveal d1">
-          <div class="service-icon">🎪</div>
-          <h3>Event Signage</h3>
-          <p>Banners, backdrops, pop-up displays. Professional event signage delivered fast, built to impress at any scale.</p>
-        </div>
-        <div class="service-card reveal d2">
-          <div class="service-icon">⚙️</div>
-          <h3>Specialist Signage</h3>
-          <p>Airport, hospital, government and education sector expertise. We understand compliance, durability, and high-traffic demands.</p>
-        </div>
-        <div class="service-card reveal d3">
-          <div class="service-icon">✏️</div>
-          <h3>Custom Design</h3>
-          <p>No templates, no shortcuts. Every project starts with your brief and ends with something uniquely yours, designed in-house.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  // Counters
+  const cntObs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target, tgt = +el.dataset.target, step = tgt / 55;
+    let v = 0;
+    const tick = () => { v = Math.min(v+step, tgt); el.textContent = Math.floor(v); if(v<tgt) requestAnimationFrame(tick); };
+    tick(); cntObs.unobserve(el);
+  }), {threshold: 0.5});
+  document.querySelectorAll('.counter').forEach(c => cntObs.observe(c));
 
-  <div class="showcase">
-    <img src="https://static.wixstatic.com/media/4591aa_6d851a84091142f1bc61d76f3def27d2~mv2.png/v1/fill/w_1200,h_812,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/4591aa_6d851a84091142f1bc61d76f3def27d2~mv2.png" alt="Storm Signs showcase" loading="lazy" />
-  </div>
+  // Lightning engine
+  function makeLightning(canvas, cfg) {
+    const ctx = canvas.getContext('2d');
+    let W, H;
+    const resize = () => {
+      W = canvas.width = cfg.full ? window.innerWidth : canvas.offsetWidth;
+      H = canvas.height = cfg.full ? window.innerHeight : canvas.offsetHeight;
+    };
+    window.addEventListener('resize', resize, {passive:true}); resize();
 
-  <div class="bolt-div"><span>⚡</span></div>
-
-  <!-- MILITARY HERITAGE -->
-  <section class="military" id="military">
-    <div class="military-glow"></div>
-    <div class="container">
-      <div class="military-grid">
-        <div class="military-story">
-          <div class="glow-line reveal"></div>
-          <p class="section-label reveal">⚡ Military Heritage</p>
-          <h2 class="section-title reveal d1">Built on<br />Two Decades<br />of Service</h2>
-          <p class="reveal d2">Storm Signs was founded in 2022 by New Zealand Army Sergeant Aaron Hoeflich. The company is built on the values of discipline, teamwork, and excellence forged over nearly two decades of military service.</p>
-          <div class="military-pullquote reveal d3">
-            <p>"Our foundation is built on the discipline, dedication, and teamwork forged over nearly two decades of service in the New Zealand Army."</p>
-          </div>
-          <p class="reveal d3">Aaron joined the Army at 18 and steadily rose through the ranks to Sergeant. His career includes a six-month operational deployment in Afghanistan and a role as a military instructor, mentoring new recruits and instilling the very principles that guide Storm Signs today.</p>
-          <p class="reveal d4">Still actively serving, he brings military precision and unwavering reliability to every single project.</p>
-        </div>
-
-        <div class="army-panel reveal d2">
-          <div class="army-logo-container">
-            <img src="https://static.wixstatic.com/media/4591aa_b480bad50d4b44c6bfef75b99474037f~mv2.png/v1/crop/x_96,y_0,w_1114,h_282/fill/w_1335,h_338,al_c,lg_1,q_90,enc_avif,quality_auto/nzarmy.png" alt="New Zealand Army" />
-          </div>
-          <div class="record-grid">
-            <div class="record-item">
-              <div class="record-icon">🎖</div>
-              <div class="record-text">
-                <strong>Current Rank: Sergeant</strong>
-                <span>New Zealand Army</span>
-              </div>
-            </div>
-            <div class="record-item">
-              <div class="record-icon">🌍</div>
-              <div class="record-text">
-                <strong>Afghanistan Deployment</strong>
-                <span>Six-month operational tour of duty</span>
-              </div>
-            </div>
-            <div class="record-item">
-              <div class="record-icon">⏱</div>
-              <div class="record-text">
-                <strong>Nearly 20 Years of Service</strong>
-                <span>Joined the NZ Army at 18 years old</span>
-              </div>
-            </div>
-            <div class="record-item">
-              <div class="record-icon">👥</div>
-              <div class="record-text">
-                <strong>Military Instructor</strong>
-                <span>Trained and mentored new recruits</span>
-              </div>
-            </div>
-            <div class="record-item">
-              <div class="record-icon">✅</div>
-              <div class="record-text">
-                <strong>Defence Force Approved</strong>
-                <span>Trusted supplier to the NZDF</span>
-              </div>
-            </div>
-          </div>
-          <div class="serving-badge"><div class="dot-pulse"></div> Still Actively Serving, 2026</div>
-          <a href="https://www.defencecareers.mil.nz/army/careers" target="_blank" rel="noopener" class="army-link">Visit the NZ Army Online →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="bolt-div"><span>⚡</span></div>
-
-  <!-- ABOUT -->
-  <section class="about" id="about">
-    <div class="about-cloud"></div>
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-img-wrap reveal">
-          <div class="about-img">
-            <img src="https://static.wixstatic.com/media/4591aa_cd9cba1235fb4384a7d0478bdefcf701~mv2.jpg" alt="Storm Signs" loading="lazy" />
-          </div>
-          <div class="about-badge">Founded<br /><span style="font-size:1.8rem;">2022</span></div>
-        </div>
-        <div>
-          <div class="glow-line reveal"></div>
-          <p class="section-label reveal">⚡ About Storm Signs</p>
-          <h2 class="section-title reveal d1">Precision-Driven.<br />Mission-Ready.</h2>
-          <p class="reveal d2">Based in Rolleston, Christchurch, Storm Signs has built a reputation for delivering on time, on brief, and above expectation for clients ranging from local businesses to national organisations.</p>
-          <p class="about-tagline reveal d3">Experience. Integrity. Results. Always.</p>
-          <div class="about-clients reveal d3">
-            <p style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.75rem;">Trusted by</p>
-            <div class="client-pill">New Zealand Defence Force</div>
-            <div class="client-pill">Air New Zealand</div>
-            <div class="client-pill">Corde Construction</div>
-            <div class="client-pill">Rolleston and Christchurch Businesses</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="bolt-div"><span>⚡</span></div>
-
-  <!-- GALLERY -->
-  <section class="gallery" id="gallery">
-    <div class="container">
-      <div class="glow-line reveal"></div>
-      <p class="section-label reveal">⚡ Our Work</p>
-      <h2 class="section-title reveal d1">Built to be Seen</h2>
-      <div class="gallery-grid">
-        <div class="gallery-item g1">
-          <img src="https://static.wixstatic.com/media/4591aa_3cb900a435df44bfbdcab20215e251f9~mv2.png/v1/crop/x_0,y_323,w_1387,h_573/fill/w_695,h_573,al_c,q_90,enc_avif,quality_auto/STORM%20SIGNS.png" alt="Storm Signs showcase" loading="lazy" />
-        </div>
-        <div class="gallery-item">
-          <img src="https://static.wixstatic.com/media/4591aa_4d7671b632134d7b9fc04d8f5a62d5e2~mv2.jpg/v1/crop/x_0,y_0,w_1255,h_1334/fill/w_424,h_452,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/23-2%20copy.jpg" alt="Interior signage" loading="lazy" />
-        </div>
-        <div class="gallery-item">
-          <img src="https://static.wixstatic.com/media/4591aa_972a5b73f9e54b49a0fd93ef0bdcf89c~mv2.jpg" alt="Wall signage" loading="lazy" />
-        </div>
-        <div class="gallery-item">
-          <img src="https://static.wixstatic.com/media/4591aa_6522a197d70e47dcb1784a54492cd219~mv2.webp/v1/fill/w_580,h_432,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/event-signs.webp" alt="Event signage" loading="lazy" />
-        </div>
-        <div class="gallery-item">
-          <img src="https://static.wixstatic.com/media/4591aa_66486c5d8cc141eaa20b5d9bad3e7c22~mv2.jpg/v1/crop/x_23,y_0,w_593,h_480/fill/w_580,h_432,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/free-standing-banner.jpg" alt="Free-standing banner" loading="lazy" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section class="stats">
-    <div class="stats-bolt-l"></div>
-    <div class="stats-bolt-r"></div>
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item reveal"><div class="num"><span class="counter" data-target="150">0</span>+</div><div class="lbl">Projects Completed</div></div>
-        <div class="stat-item reveal d1"><div class="num"><span class="counter" data-target="100">0</span>%</div><div class="lbl">On-Time Delivery</div></div>
-        <div class="stat-item reveal d2"><div class="num"><span class="counter" data-target="20">0</span></div><div class="lbl">Years of Service</div></div>
-        <div class="stat-item reveal d3"><div class="num">5★</div><div class="lbl">Google Rating</div></div>
-      </div>
-    </div>
-  </section>
-
-  <div class="bolt-div" style="--bg:#07010f;"><span>⚡</span></div>
-
-  <!-- REVIEWS -->
-  <section class="reviews" id="reviews">
-    <div class="container">
-      <div class="reviews-header">
-        <div>
-          <div class="glow-line reveal"></div>
-          <p class="section-label reveal">⚡ Customer Reviews</p>
-          <h2 class="section-title reveal d1">What Clients Say</h2>
-        </div>
-        <div class="reveal d2" style="text-align:right;">
-          <div class="rating-num">5.0</div>
-          <div class="rating-stars">★★★★★</div>
-          <div class="rating-label">Google Reviews</div>
-        </div>
-      </div>
-      <div class="reviews-grid">
-        <div class="review-card reveal">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Exceptional service and craftsmanship. Aaron and the team went above and beyond. The final result looked incredible and was delivered ahead of schedule."</p>
-          <div class="review-author"><div class="review-avatar">JB</div><div><div class="review-name">John B.</div><div class="review-date">Rolleston, Christchurch</div></div></div>
-        </div>
-        <div class="review-card reveal d1">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Professional from start to finish. The vehicle wrap for our fleet was flawless, precise, clean and exactly what we envisioned. Highly recommended."</p>
-          <div class="review-author"><div class="review-avatar">SK</div><div><div class="review-name">Sarah K.</div><div class="review-date">Christchurch</div></div></div>
-        </div>
-        <div class="review-card reveal d2">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Storm Signs handled our entire office fit-out with incredible attention to detail. The wayfinding system they designed is both functional and stunning."</p>
-          <div class="review-author"><div class="review-avatar">MT</div><div><div class="review-name">Mark T.</div><div class="review-date">Canterbury</div></div></div>
-        </div>
-      </div>
-      <div class="reviews-cta reveal">
-        <a href="review.html" class="btn-primary" style="margin:0 auto;display:inline-flex;">⭐ Leave a Review</a>
-      </div>
-    </div>
-  </section>
-
-  <div class="bolt-div"><span>⚡</span></div>
-
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <div class="container">
-      <div class="contact-grid">
-        <div>
-          <div class="glow-line reveal"></div>
-          <p class="section-label reveal">⚡ Get In Touch</p>
-          <h2 class="section-title reveal d1">Ready to Start<br />Your Project?</h2>
-          <p class="contact-info reveal d2">Tell us about your signage needs and we'll come back with a fast, competitive quote. No obligation, just straight answers from people who know the craft.</p>
-          <div class="reveal d3">
-            <div class="contact-detail"><div class="contact-icon">📍</div><span>5/25 Hynds Drive, Rolleston, Christchurch 7614</span></div>
-            <div class="contact-detail"><div class="contact-icon">📞</div><span>03 347 8690</span></div>
-            <div class="contact-detail"><div class="contact-icon">✉️</div><span>info@stormsigns.co.nz</span></div>
-          </div>
-        </div>
-        <div class="contact-form-wrap reveal d2">
-          <form action="https://api.staticforms.xyz/submit" method="post">
-            <input type="hidden" name="apiKey" value="sf_768da8d33927e7f4f241d0a6" />
-            <div class="form-row">
-              <div class="form-group"><label>First Name</label><input type="text" name="firstName" placeholder="First name" required /></div>
-              <div class="form-group"><label>Last Name</label><input type="text" name="lastName" placeholder="Last name" required /></div>
-            </div>
-            <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="your@email.com" required /></div>
-            <div class="form-group"><label>Phone</label><input type="tel" name="phone" placeholder="Your phone number" /></div>
-            <div class="form-group">
-              <label>Service Required</label>
-              <select name="service" required>
-                <option value="" disabled selected>What do you need?</option>
-                <option value="interior">Interior Signage</option>
-                <option value="exterior">Exterior Signage</option>
-                <option value="vehicle">Vehicle Wraps and Graphics</option>
-                <option value="event">Event Signage</option>
-                <option value="specialist">Specialist Signage</option>
-                <option value="custom">Custom Design</option>
-                <option value="other">Other / Not Sure</option>
-              </select>
-            </div>
-            <div class="form-group"><label>Project Details</label><textarea name="message" placeholder="Tell us about your project, size, timeline, and anything else relevant..." required></textarea></div>
-            <button type="submit" class="form-submit">⚡ Send Enquiry</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MAP -->
-  <section class="map-section" id="location">
-    <div class="container">
-      <div class="map-grid">
-        <div>
-          <div class="glow-line reveal"></div>
-          <p class="section-label reveal">⚡ Find Us</p>
-          <h3 class="reveal d1">Visit Our Workshop</h3>
-          <p class="reveal d2">Based in Rolleston, Christchurch. Come in and discuss your project with the team, or get in touch to arrange a consultation.</p>
-          <div class="reveal d3">
-            <div class="map-address-line"><div class="icon">📍</div><div><strong>5/25 Hynds Drive</strong><br /><span style="color:var(--muted);font-size:0.9rem;">Rolleston, Christchurch 7614</span></div></div>
-            <div class="map-address-line"><div class="icon">📞</div><div><span>03 347 8690</span></div></div>
-            <div class="map-address-line"><div class="icon">✉️</div><div><span>info@stormsigns.co.nz</span></div></div>
-          </div>
-        </div>
-        <div class="map-embed-wrap reveal d2">
-          <iframe
-            src="https://maps.google.com/maps?q=25+Hynds+Drive+Rolleston+Christchurch+7614+New+Zealand&output=embed&z=15"
-            loading="lazy"
-            allowfullscreen
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-logo"><img src="https://static.wixstatic.com/media/4591aa_e912de59ad8646e7832319f430d11e12~mv2.png" alt="Storm Signs" /></div>
-      <div class="footer-links">
-        <a href="#services">Services</a>
-        <a href="#military">Our Story</a>
-        <a href="#gallery">Work</a>
-        <a href="#location">Location</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div class="footer-copy">2025 Storm Signs Ltd, Rolleston, Christchurch</div>
-    </div>
-  </footer>
-
-  <script>
-    // ── Nav scroll ──
-    const nav = document.getElementById('navbar');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), {passive:true});
-
-    // ── Scroll reveal ──
-    const revObs = new IntersectionObserver(entries => entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
-    }), {threshold: 0.1});
-    document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
-
-    // ── Counters ──
-    const cntObs = new IntersectionObserver(entries => entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      const el = e.target, tgt = +el.dataset.target, step = tgt / 60;
-      let v = 0;
-      const tick = () => { v = Math.min(v+step, tgt); el.textContent = Math.floor(v); if(v<tgt) requestAnimationFrame(tick); };
-      tick(); cntObs.unobserve(el);
-    }), {threshold: 0.5});
-    document.querySelectorAll('.counter').forEach(c => cntObs.observe(c));
-
-    // ── Lightning engine ──
-    function makeLightningEngine(canvas, opts) {
-      const ctx = canvas.getContext('2d');
-      let W, H;
-
-      const resize = () => {
-        W = canvas.width = opts.fullPage ? window.innerWidth : canvas.offsetWidth;
-        H = canvas.height = opts.fullPage ? window.innerHeight : canvas.offsetHeight;
-      };
-      window.addEventListener('resize', resize, {passive:true}); resize();
-
-      function genSegs(x1,y1,x2,y2,r) {
-        if (Math.abs(y2-y1) < (opts.minSeg||5)) return [[x1,y1],[x2,y2]];
-        const mx = (x1+x2)/2 + (Math.random()-0.5)*r;
-        const my = (y1+y2)/2;
-        return [...genSegs(x1,y1,mx,my,r*0.58), ...genSegs(mx,my,x2,y2,r*0.58)];
-      }
-
-      function mkBolt(sx, sy, ex, ey, rough) {
-        const segs = genSegs(sx, sy, ex, ey, rough);
-        const bi = Math.floor(segs.length * 0.55);
-        const branch = bi < segs.length-1
-          ? genSegs(segs[bi][0], segs[bi][1], segs[bi][0]+(Math.random()-0.35)*120, segs[bi][1]+Math.random()*70, rough*0.38)
-          : [];
-        return {segs, branch, alpha: 1, age: 0};
-      }
-
-      const bolts = [];
-      let flash = 0, timer = 0;
-      let nextStrike = (opts.minInterval||6000) + Math.random()*(opts.randInterval||8000);
-
-      function doStrike() {
-        const sx = W * (opts.xMin||0.1) + Math.random() * W * (opts.xSpan||0.8);
-        const ex = sx + (Math.random()-0.5) * (opts.drift||280);
-        const ey = H * (opts.yMin||0.35) + Math.random() * H * (opts.ySpan||0.35);
-        bolts.push(mkBolt(sx, opts.fromTop ? -10 : sy||0, ex, ey, opts.rough||90));
-        flash = 1;
-        if (Math.random() > (opts.doubleChance||0.55)) {
-          setTimeout(() => { bolts.push(mkBolt(sx+(Math.random()-0.5)*100, opts.fromTop?-10:0, ex+(Math.random()-0.5)*80, ey, opts.rough||90)); }, 90+Math.random()*80);
-        }
-      }
-
-      function drawBolt(b, dt) {
-        b.age += dt; b.alpha = Math.max(0, 1 - b.age/(opts.life||310));
-        if (b.alpha <= 0) return false;
-        const a = b.alpha * (opts.maxAlpha||1);
-        ctx.save();
-        ctx.shadowBlur = opts.blur||28; ctx.shadowColor = `hsla(${opts.hue||278},80%,72%,${a*0.9})`;
-        ctx.strokeStyle = `hsla(${opts.hue||285},85%,82%,${a})`; ctx.lineWidth = opts.width||2.2;
-        ctx.lineCap='round'; ctx.lineJoin='round';
-        ctx.beginPath(); ctx.moveTo(b.segs[0][0],b.segs[0][1]);
-        b.segs.forEach(s=>ctx.lineTo(s[0],s[1])); ctx.stroke();
-        ctx.shadowBlur=5; ctx.strokeStyle=`rgba(255,250,255,${a*0.88})`; ctx.lineWidth=(opts.width||2.2)*0.4;
-        ctx.beginPath(); ctx.moveTo(b.segs[0][0],b.segs[0][1]);
-        b.segs.forEach(s=>ctx.lineTo(s[0],s[1])); ctx.stroke();
-        if (b.branch.length>1) {
-          ctx.strokeStyle=`hsla(${opts.hue||278},75%,78%,${a*0.5})`; ctx.lineWidth=0.9; ctx.shadowBlur=12;
-          ctx.beginPath(); ctx.moveTo(b.branch[0][0],b.branch[0][1]);
-          b.branch.forEach(s=>ctx.lineTo(s[0],s[1])); ctx.stroke();
-        }
-        ctx.restore();
-        return true;
-      }
-
-      let last = 0;
-      function animate(ts) {
-        const dt = Math.min(ts-last, 50); last = ts;
-        ctx.clearRect(0,0,W,H);
-        timer += dt;
-        if (timer >= nextStrike) {
-          timer = 0;
-          nextStrike = (opts.minInterval||6000) + Math.random()*(opts.randInterval||8000);
-          doStrike();
-        }
-        if (flash > 0) {
-          ctx.fillStyle = `rgba(168,85,247,${flash * (opts.flashAlpha||0.15)})`;
-          ctx.fillRect(0,0,W,H);
-          flash = Math.max(0, flash - dt*0.005);
-        }
-        for (let i = bolts.length-1; i >= 0; i--) {
-          if (!drawBolt(bolts[i], dt)) bolts.splice(i,1);
-        }
-        if (opts.particles) {
-          opts.particles.forEach(p => { p.update(); p.draw(ctx); });
-          drawConnections(ctx, opts.particles, W, H);
-        }
-        requestAnimationFrame(animate);
-      }
-      requestAnimationFrame(animate);
+    function seg(x1,y1,x2,y2,r) {
+      if (Math.abs(y2-y1) < (cfg.min||5)) return [[x1,y1],[x2,y2]];
+      const mx = (x1+x2)/2+(Math.random()-0.5)*r, my=(y1+y2)/2;
+      return [...seg(x1,y1,mx,my,r*.58), ...seg(mx,my,x2,y2,r*.58)];
     }
 
-    // Particle class
-    class Particle {
-      constructor(W,H) { this.W=W; this.H=H; this.reset(); }
-      reset() {
-        this.x=Math.random()*this.W; this.y=Math.random()*this.H;
-        this.vx=(Math.random()-0.5)*0.32; this.vy=(Math.random()-0.5)*0.32;
-        this.r=Math.random()*1.4+0.4; this.alpha=Math.random()*0.42+0.07;
-        this.hue=255+Math.random()*50;
-      }
-      update() { this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>this.W||this.y<0||this.y>this.H) this.reset(); }
-      draw(ctx) { ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fillStyle=`hsla(${this.hue},72%,65%,${this.alpha})`; ctx.fill(); }
+    const bolts = []; let flash=0, timer=0;
+    let next = cfg.lo + Math.random()*cfg.hi;
+
+    function fire() {
+      const sx = W*(cfg.xl||.1)+Math.random()*W*(cfg.xs||.8);
+      const ex = sx+(Math.random()-.5)*(cfg.dr||280);
+      const ey = H*(cfg.yl||.3)+Math.random()*H*(cfg.ys||.4);
+      const s = seg(sx,cfg.top?-10:0,ex,ey,cfg.r||90);
+      const bi = Math.floor(s.length*.55);
+      const br = bi<s.length-1?seg(s[bi][0],s[bi][1],s[bi][0]+(Math.random()-.35)*120,s[bi][1]+Math.random()*70,cfg.r*.38):[];
+      bolts.push({s,br,a:1,age:0});
+      flash=1;
+      if (Math.random()>.5) setTimeout(()=>fire2(),90+Math.random()*80);
+      if (Math.random()>.72) setTimeout(()=>fire2(),220+Math.random()*120);
+    }
+    function fire2() {
+      const sx=W*(.15+Math.random()*.7), ex=sx+(Math.random()-.5)*220;
+      const s=seg(sx,cfg.top?-10:0,ex,H*(.3+Math.random()*.35),cfg.r||90);
+      bolts.push({s,br:[],a:1,age:0}); flash=Math.max(flash,.6);
     }
 
-    function drawConnections(ctx, particles, W, H) {
-      for (let i=0;i<particles.length;i++) for (let j=i+1;j<particles.length;j++) {
-        const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y;
-        const d=Math.sqrt(dx*dx+dy*dy);
-        if (d<95) { ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.strokeStyle=`hsla(270,60%,62%,${0.08*(1-d/95)})`; ctx.lineWidth=0.5; ctx.stroke(); }
-      }
+    function drawBolt(b,dt) {
+      b.age+=dt; b.a=Math.max(0,1-b.age/(cfg.life||300));
+      if(b.a<=0) return false;
+      const a=b.a*(cfg.ma||1);
+      ctx.save();
+      ctx.shadowBlur=cfg.blur||28; ctx.shadowColor=`hsla(${cfg.hue||278},80%,72%,${a*.9})`;
+      ctx.strokeStyle=`hsla(${cfg.hue||285},85%,84%,${a})`; ctx.lineWidth=cfg.w||2.2;
+      ctx.lineCap='round'; ctx.lineJoin='round';
+      ctx.beginPath(); ctx.moveTo(b.s[0][0],b.s[0][1]);
+      b.s.forEach(p=>ctx.lineTo(p[0],p[1])); ctx.stroke();
+      ctx.shadowBlur=4; ctx.strokeStyle=`rgba(255,252,255,${a*.9})`; ctx.lineWidth=(cfg.w||2.2)*.38;
+      ctx.beginPath(); ctx.moveTo(b.s[0][0],b.s[0][1]);
+      b.s.forEach(p=>ctx.lineTo(p[0],p[1])); ctx.stroke();
+      if(b.br.length>1){ctx.strokeStyle=`hsla(${cfg.hue||278},72%,78%,${a*.5})`; ctx.lineWidth=.85; ctx.shadowBlur=10; ctx.beginPath(); ctx.moveTo(b.br[0][0],b.br[0][1]); b.br.forEach(p=>ctx.lineTo(p[0],p[1])); ctx.stroke();}
+      ctx.restore(); return true;
     }
 
-    // Hero canvas (particles + lightning)
-    const heroCanvas = document.getElementById('hero-canvas');
-    const heroParticles = Array.from({length:110}, () => new Particle(heroCanvas.offsetWidth, heroCanvas.offsetHeight));
-    makeLightningEngine(heroCanvas, {
-      fromTop: true, minInterval: 4000, randInterval: 8000,
-      rough: 95, drift: 280, life: 320, blur: 28, width: 2.2,
-      maxAlpha: 1, flashAlpha: 0.14, hue: 283,
-      xMin: 0.12, xSpan: 0.76, yMin: 0.35, ySpan: 0.3,
-      particles: heroParticles
-    });
+    let last=0;
+    function loop(ts) {
+      const dt=Math.min(ts-last,50); last=ts;
+      ctx.clearRect(0,0,W,H);
+      timer+=dt;
+      if(timer>=next){timer=0;next=cfg.lo+Math.random()*cfg.hi;fire();}
+      if(flash>0){ctx.fillStyle=`rgba(168,85,247,${flash*(cfg.fa||.14)})`; ctx.fillRect(0,0,W,H); flash=Math.max(0,flash-dt*.005);}
+      for(let i=bolts.length-1;i>=0;i--){if(!drawBolt(bolts[i],dt))bolts.splice(i,1);}
+      if(cfg.pts){cfg.pts.forEach(p=>{p.update();p.draw(ctx);}); drawLinks(ctx,cfg.pts);}
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  }
 
-    // Full-page ambient lightning (screen blend mode)
-    makeLightningEngine(document.getElementById('bg-lightning'), {
-      fullPage: true, fromTop: true,
-      minInterval: 5000, randInterval: 12000,
-      rough: 110, drift: 340, life: 380, blur: 35, width: 2.8,
-      maxAlpha: 0.55, flashAlpha: 0.06, hue: 276,
-      xMin: 0.05, xSpan: 0.9, yMin: 0.2, ySpan: 0.55,
-      doubleChance: 0.48
-    });
+  function drawLinks(ctx,pts) {
+    for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++){
+      const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<95){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`hsla(270,58%,62%,${.08*(1-d/95)})`;ctx.lineWidth=.5;ctx.stroke();}
+    }
+  }
 
-    // Service card 3D tilt
-    document.querySelectorAll('.service-card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX-r.left)/r.width-0.5, y = (e.clientY-r.top)/r.height-0.5;
-        card.style.transform = `translateY(-7px) rotateX(${-y*7}deg) rotateY(${x*7}deg)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = ''; card.style.transition = 'transform 0.5s ease';
-        setTimeout(() => card.style.transition='', 500);
-      });
+  class Dot {
+    constructor(W,H){this.W=W;this.H=H;this.reset();}
+    reset(){this.x=Math.random()*this.W;this.y=Math.random()*this.H;this.vx=(Math.random()-.5)*.32;this.vy=(Math.random()-.5)*.32;this.r=Math.random()*1.4+.4;this.alpha=Math.random()*.42+.07;this.hue=255+Math.random()*50;}
+    update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>this.W||this.y<0||this.y>this.H)this.reset();}
+    draw(ctx){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`hsla(${this.hue},70%,65%,${this.alpha})`;ctx.fill();}
+  }
+
+  const hc = document.getElementById('hero-canvas');
+  const dots = Array.from({length:110},()=>new Dot(hc.offsetWidth,hc.offsetHeight));
+
+  // Hero lightning — more frequent
+  makeLightning(hc, {top:true, lo:1800, hi:3500, r:95, dr:280, life:320, blur:28, w:2.2, ma:1, fa:.14, hue:283, xl:.12, xs:.76, yl:.35, ys:.3, pts:dots});
+
+  // Full-page ambient lightning — much more frequent
+  makeLightning(document.getElementById('bg-lightning'), {full:true, top:true, lo:1200, hi:3000, r:110, dr:340, life:380, blur:35, w:2.8, ma:.55, fa:.06, hue:276, xl:.05, xs:.9, yl:.2, ys:.55});
+
+  // Service card tilt
+  document.querySelectorAll('.service-feat, .service-item').forEach(card=>{
+    card.addEventListener('mousemove',e=>{
+      if(!card.classList.contains('service-feat')) return;
+      const r=card.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`scale(1.01) rotateX(${-y*4}deg) rotateY(${x*4}deg)`;
     });
-  </script>
+    card.addEventListener('mouseleave',()=>{card.style.transform='';});
+  });
+</script>
 </body>
 </html>
