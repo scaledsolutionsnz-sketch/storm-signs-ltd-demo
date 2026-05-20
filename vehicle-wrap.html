@@ -157,7 +157,7 @@ body.shaking{animation:bodyShake 0.26s ease}
 .error-msg.show{display:block}
 
 /* ── LOGO DECAL OVERLAY ── */
-.preview-logo-decal{position:absolute;top:46%;left:62%;transform:translate(-50%,-50%);pointer-events:none;z-index:4;display:none;flex-direction:column;align-items:center;gap:5px}
+.preview-logo-decal{position:absolute;transform:translate(-50%,-50%);pointer-events:none;z-index:4;display:none;flex-direction:column;align-items:center;gap:5px}
 .preview-logo-decal img{width:clamp(55px,16%,105px);filter:drop-shadow(0 2px 8px rgba(0,0,0,0.7)) brightness(0) invert(1);opacity:0.88;transition:opacity 0.2s}
 .preview-logo-decal .decal-tag{font-family:'Rajdhani',sans-serif;font-size:0.52rem;letter-spacing:0.22em;color:rgba(255,255,255,0.55);text-transform:uppercase}
 
@@ -535,9 +535,34 @@ function updateAll(){
   document.querySelectorAll('.vc-colour-tint').forEach(el => el.style.background = state.hex);
 
   // Show Storm Signs logo on vehicle when Decals & Lettering style is active
+  // Per-vehicle door panel position in original 768x512 image coordinates (x%, y%)
+  const doorPanelPct = {
+    'Ute / Pickup': { x: 0.53, y: 0.53 },
+    'SUV':          { x: 0.56, y: 0.52 },
+    'Sedan':        { x: 0.57, y: 0.52 },
+    'Hatchback':    { x: 0.46, y: 0.53 },
+  };
   const logoDecal = document.getElementById('preview-logo-decal');
   if(logoDecal){
-    logoDecal.style.display = ((state.style||'')==='Decals & Lettering Only' && state.vehicle) ? 'flex' : 'none';
+    const isDecal = (state.style||'')==='Decals & Lettering Only' && state.vehicle;
+    logoDecal.style.display = isDecal ? 'flex' : 'none';
+    if(isDecal && doorPanelPct[state.vehicle]){
+      // Calculate actual rendered image bounds inside the container (object-fit:contain)
+      const carImg2 = document.getElementById('preview-car-img');
+      const wrap2   = document.getElementById('preview-car-wrap');
+      const cw = wrap2.clientWidth;
+      const ch = wrap2.clientHeight || carImg2.clientHeight;
+      const iw = carImg2.naturalWidth  || 768;
+      const ih = carImg2.naturalHeight || 512;
+      const scale = Math.min(cw / iw, ch / ih);
+      const rw = iw * scale;
+      const rh = ih * scale;
+      const ox = (cw - rw) / 2;  // horizontal letterbox offset
+      const oy = (ch - rh) / 2;  // vertical letterbox offset
+      const dp = doorPanelPct[state.vehicle];
+      logoDecal.style.left = (ox + rw * dp.x) + 'px';
+      logoDecal.style.top  = (oy + rh * dp.y) + 'px';
+    }
   }
 
   // Form hidden fields
@@ -556,6 +581,9 @@ function updateAll(){
 
 // Initial render
 updateAll();
+
+// Reposition logo on resize (letterbox offset changes)
+window.addEventListener('resize', () => { if(state.style==='Decals & Lettering Only') updateAll(); });
 
 // ── FORM SUBMISSION (AJAX via fetch) ──
 const form      = document.getElementById('quote-form');
