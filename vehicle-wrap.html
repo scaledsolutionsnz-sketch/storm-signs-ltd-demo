@@ -85,7 +85,7 @@ body.shaking{animation:bodyShake 0.26s ease}
 @keyframes cardGlow{0%,100%{box-shadow:0 0 0 1px var(--accent),0 0 20px rgba(139,45,245,0.35)}50%{box-shadow:0 0 0 1px var(--accent),0 0 38px rgba(139,45,245,0.58)}}
 .vc-check{position:absolute;top:9px;right:9px;width:21px;height:21px;background:var(--accent);border-radius:50%;display:none;align-items:center;justify-content:center;font-size:11px;color:#fff}
 .vehicle-card.selected .vc-check{display:flex}
-.vc-img-wrap{position:relative;width:100%;height:100px;margin-bottom:10px;overflow:hidden}.vc-img{width:100%;height:100%;object-fit:contain;display:block}.vc-colour-tint{position:absolute;inset:0;mix-blend-mode:multiply;pointer-events:none;transition:background 0.18s}
+.vc-img-wrap{position:relative;width:100%;height:108px;margin-bottom:10px;overflow:hidden;border-radius:8px;background:radial-gradient(ellipse 90% 85% at 50% 55%,#e8e0f4 0%,#b09ad8 28%,#4a2880 58%,#120824 100%)}.vc-img{width:100%;height:100%;object-fit:contain;display:block}.vc-colour-tint{position:absolute;inset:0;mix-blend-mode:multiply;pointer-events:none;transition:background 0.18s;-webkit-mask-size:contain;-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;mask-size:contain;mask-repeat:no-repeat;mask-position:center}
 .vc-label{font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.05em;color:var(--text)}
 
 /* Style tiles */
@@ -217,7 +217,7 @@ footer a:hover{color:var(--hot)}
         <div class="vc-check">&#10003;</div>
         <div class="vc-img-wrap">
           <img src="/assets/vehicles/ute.png" class="vc-img" alt="Ute / Pickup" loading="lazy">
-          <div class="vc-colour-tint" style="background:#1c1c1e;"></div>
+          <div class="vc-colour-tint" style="background:#1c1c1e;-webkit-mask-image:url(/assets/vehicles/ute.png);mask-image:url(/assets/vehicles/ute.png)"></div>
         </div>
 
         <div class="vc-label">Ute / Pickup</div>
@@ -228,7 +228,7 @@ footer a:hover{color:var(--hot)}
         <div class="vc-check">&#10003;</div>
         <div class="vc-img-wrap">
           <img src="/assets/vehicles/suv.png" class="vc-img" alt="SUV" loading="lazy">
-          <div class="vc-colour-tint" style="background:#1c1c1e;"></div>
+          <div class="vc-colour-tint" style="background:#1c1c1e;-webkit-mask-image:url(/assets/vehicles/suv.png);mask-image:url(/assets/vehicles/suv.png)"></div>
         </div>
 
         <div class="vc-label">SUV</div>
@@ -239,7 +239,7 @@ footer a:hover{color:var(--hot)}
         <div class="vc-check">&#10003;</div>
         <div class="vc-img-wrap">
           <img src="/assets/vehicles/sedan.png" class="vc-img" alt="Sedan" loading="lazy">
-          <div class="vc-colour-tint" style="background:#1c1c1e;"></div>
+          <div class="vc-colour-tint" style="background:#1c1c1e;-webkit-mask-image:url(/assets/vehicles/sedan.png);mask-image:url(/assets/vehicles/sedan.png)"></div>
         </div>
 
         <div class="vc-label">Sedan</div>
@@ -250,7 +250,7 @@ footer a:hover{color:var(--hot)}
         <div class="vc-check">&#10003;</div>
         <div class="vc-img-wrap">
           <img src="/assets/vehicles/hatchback.png" class="vc-img" alt="Hatchback" loading="lazy">
-          <div class="vc-colour-tint" style="background:#1c1c1e;"></div>
+          <div class="vc-colour-tint" style="background:#1c1c1e;-webkit-mask-image:url(/assets/vehicles/hatchback.png);mask-image:url(/assets/vehicles/hatchback.png)"></div>
         </div>
 
         <div class="vc-label">Hatchback</div>
@@ -469,10 +469,21 @@ function updateAll(){
   const carImg  = document.getElementById('preview-car-img');
   const carTint = document.getElementById('preview-colour-tint');
   if(state.vehicle && vehicleImgMap[state.vehicle]){
+    const src = vehicleImgMap[state.vehicle];
     empty.style.display = 'none';
     carWrap.style.display = 'block';
-    carImg.src = vehicleImgMap[state.vehicle];
+    carImg.src = src;
     carImg.alt = state.vehicle;
+    if(carTint){
+      carTint.style.webkitMaskImage = 'url('+src+')';
+      carTint.style.maskImage = 'url('+src+')';
+      carTint.style.webkitMaskSize = 'contain';
+      carTint.style.maskSize = 'contain';
+      carTint.style.webkitMaskRepeat = 'no-repeat';
+      carTint.style.maskRepeat = 'no-repeat';
+      carTint.style.webkitMaskPosition = 'center';
+      carTint.style.maskPosition = 'center';
+    }
   }
   if(carTint) carTint.style.background = state.hex;
   // Update card tint overlays
