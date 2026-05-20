@@ -162,7 +162,8 @@ body.shaking{animation:bodyShake 0.26s ease}
 .preview-logo-decal .decal-tag{font-family:'Rajdhani',sans-serif;font-size:0.52rem;letter-spacing:0.22em;color:rgba(255,255,255,0.55);text-transform:uppercase}
 
 /* ── HERO LOGO ── */
-.hero-brand{display:flex;flex-direction:column;align-items:center;gap:14px;margin-bottom:28px}
+.hero-brand{display:flex;flex-direction:column;align-items:center;gap:14px;margin-bottom:28px;text-decoration:none;cursor:pointer;transition:opacity 0.18s}
+.hero-brand:hover{opacity:0.78}
 .hero-brand img{height:clamp(38px,6vw,54px);filter:brightness(0) invert(1);opacity:0.92;filter:drop-shadow(0 0 18px rgba(139,45,245,0.6)) brightness(0) invert(1)}
 .hero-brand-name{font-family:'Rajdhani',sans-serif;font-size:clamp(0.7rem,1.5vw,0.85rem);letter-spacing:0.35em;color:var(--muted);text-transform:uppercase}
 
@@ -210,10 +211,10 @@ footer a:hover{color:var(--hot)}
     <svg width="700" height="440" viewBox="0 0 700 440"><path d="M490 0 L240 200 L375 200 L120 440 L330 250 L195 250 Z" fill="white"/></svg>
   </div>
   <div class="container">
-    <div class="hero-brand">
+    <a href="/" class="hero-brand" aria-label="Back to Storm Signs">
       <img src="https://static.wixstatic.com/media/4591aa_e912de59ad8646e7832319f430d11e12~mv2.png" alt="Storm Signs" />
       <span class="hero-brand-name">Storm Signs</span>
-    </div>
+    </a>
     <h1>Design Your Wrap</h1>
     <p>Select your vehicle, choose your wrap style and colours — get a feel for your design before you commit</p>
   </div>
