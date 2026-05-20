@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vehicle Wrap Designer — Storm Signs</title>
+<title>Vehicle Wrap Designer | Storm Signs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -216,7 +216,7 @@ footer a:hover{color:var(--hot)}
       <span class="hero-brand-name">Storm Signs</span>
     </a>
     <h1>Design Your Wrap</h1>
-    <p>Select your vehicle, choose your wrap style and colours — get a feel for your design before you commit</p>
+    <p>Select your vehicle, choose your wrap style and colours. Get a feel for your design before you commit</p>
   </div>
 </section>
 
@@ -286,11 +286,11 @@ footer a:hover{color:var(--hot)}
     <div class="step-label"><div class="step-num">2</div>Wrap Style</div>
     <div class="step-title">How do you want it finished?</div>
     <div class="style-grid" id="style-grid">
-      <div class="style-tile" data-style="Full Colour Wrap" tabindex="0" role="button"><div class="st-name">Full Colour Wrap</div><div class="st-desc">Complete coverage — head to toe transformation</div></div>
+      <div class="style-tile" data-style="Full Colour Wrap" tabindex="0" role="button"><div class="st-name">Full Colour Wrap</div><div class="st-desc">Complete coverage -head to toe transformation</div></div>
       <div class="style-tile" data-style="Gloss Finish" tabindex="0" role="button"><div class="st-name">Gloss Finish</div><div class="st-desc">High-shine, deep reflective colour</div></div>
-      <div class="style-tile" data-style="Matte Finish" tabindex="0" role="button"><div class="st-name">Matte Finish</div><div class="st-desc">Premium flat finish — bold and understated</div></div>
+      <div class="style-tile" data-style="Matte Finish" tabindex="0" role="button"><div class="st-name">Matte Finish</div><div class="st-desc">Premium flat finish -bold and understated</div></div>
       <div class="style-tile" data-style="Chrome / Metallic" tabindex="0" role="button"><div class="st-name">Chrome / Metallic</div><div class="st-desc">Mirror or brushed metallic effect</div></div>
-      <div class="style-tile" data-style="Partial Wrap (bonnet + roof)" tabindex="0" role="button"><div class="st-name">Partial Wrap</div><div class="st-desc">Bonnet and roof accent — striking contrast</div></div>
+      <div class="style-tile" data-style="Partial Wrap (bonnet + roof)" tabindex="0" role="button"><div class="st-name">Partial Wrap</div><div class="st-desc">Bonnet and roof accent -striking contrast</div></div>
       <div class="style-tile" data-style="Decals & Lettering Only" tabindex="0" role="button"><div class="st-name">Decals &amp; Lettering</div><div class="st-desc">Cut vinyl, logos and text on your paint</div></div>
     </div>
   </div>
@@ -383,9 +383,9 @@ footer a:hover{color:var(--hot)}
         <div class="form-group"><label for="inp-phone">Phone</label><input type="tel" id="inp-phone" name="phone" placeholder="+64 21 000 000"></div>
       </div>
 
-      <div class="design-summary" id="design-summary"><strong>Your selected design:</strong> <span id="summary-text">No vehicle selected yet — choose above</span></div>
+      <div class="design-summary" id="design-summary"><strong>Your selected design:</strong> <span id="summary-text">No vehicle selected yet -choose above</span></div>
 
-      <div class="form-group"><label for="inp-notes">Additional Details / Notes</label><textarea id="inp-notes" name="message" placeholder="Tell us more — any existing logos, specific ideas, deadline..."></textarea></div>
+      <div class="form-group"><label for="inp-notes">Additional Details / Notes</label><textarea id="inp-notes" name="message" placeholder="Tell us more -any existing logos, specific ideas, deadline..."></textarea></div>
 
       <div class="error-msg" id="error-msg">Something went wrong. Please try again or contact us directly at stormsigns.co.nz</div>
 
@@ -611,7 +611,7 @@ form.addEventListener('submit', async e => {
     email:     document.getElementById('inp-email').value.trim(),
     phone:     document.getElementById('inp-phone').value.trim(),
     replyTo:   document.getElementById('inp-email').value.trim(),
-    subject:   'Vehicle Wrap Quote — ' + (state.vehicle||'Vehicle') + ' · ' + (state.style||'Style') + ' · ' + state.colour,
+    subject:   'Vehicle Wrap Quote -' + (state.vehicle||'Vehicle') + ' · ' + (state.style||'Style') + ' · ' + state.colour,
     message:
       'Vehicle: '    + (state.vehicle||'Not specified') + '\n' +
       'Wrap Style: ' + (state.style  ||'Not specified') + '\n' +
