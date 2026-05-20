@@ -64,6 +64,8 @@
     .nav-links { display: flex; align-items: center; gap: 2.5rem; }
     .nav-links a { color: rgba(242,234,255,0.6); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em; transition: color 0.2s; }
     .nav-links a:hover { color: var(--hot); }
+    .nav-wrap-link { color: var(--vivid) !important; border: 1px solid rgba(180,79,232,0.4); border-radius: 4px; padding: 0.3rem 0.85rem !important; transition: all 0.2s !important; }
+    .nav-wrap-link:hover { background: rgba(139,45,245,0.15) !important; border-color: var(--vivid) !important; color: var(--hot) !important; }
     .nav-right { padding: 0 1.5rem; }
     .nav-cta { padding: 0.55rem 1.4rem; background: linear-gradient(90deg, var(--accent2), var(--accent)); color: #fff; border-radius: 4px; font-size: 0.75rem; font-weight: 800; text-decoration: none; letter-spacing: 0.09em; text-transform: uppercase; transition: all 0.2s; }
     .nav-cta:hover { box-shadow: 0 0 28px var(--glow); transform: translateY(-1px); opacity: 0.92; }
@@ -325,6 +327,22 @@
     .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.75s ease, transform 0.75s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .d1{transition-delay:0.1s} .d2{transition-delay:0.2s} .d3{transition-delay:0.3s} .d4{transition-delay:0.4s} .d5{transition-delay:0.5s}
+
+    /* ── WRAP DESIGNER CTA STRIP ── */
+    .wrap-cta-strip { background: linear-gradient(135deg, #0a0118 0%, #0f0325 50%, #08011a 100%); border-top: 1px solid rgba(139,45,245,0.18); border-bottom: 1px solid rgba(139,45,245,0.18); padding: 40px 24px; position: relative; overflow: hidden; }
+    .wrap-cta-strip::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 100% at 50% 50%, rgba(139,45,245,0.1) 0%, transparent 70%); pointer-events: none; }
+    .wrap-cta-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; justify-content: space-between; position: relative; z-index: 1; }
+    .wrap-cta-bolt { flex-shrink: 0; }
+    .wrap-cta-text { flex: 1; min-width: 220px; }
+    .wrap-cta-eye { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--vivid); font-weight: 600; margin-bottom: 6px; }
+    .wrap-cta-text h2 { font-family: 'Rajdhani', sans-serif; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; letter-spacing: 0.03em; color: var(--text); margin-bottom: 6px; line-height: 1.15; }
+    .wrap-cta-sub { font-size: 0.9rem; color: var(--muted); line-height: 1.55; max-width: 480px; }
+    .wrap-cta-btn { flex-shrink: 0; display: inline-block; padding: 14px 28px; background: linear-gradient(135deg, var(--accent2), var(--accent) 60%, var(--vivid)); color: #fff; text-decoration: none; border-radius: 8px; font-family: 'Rajdhani', sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: 0.08em; white-space: nowrap; transition: transform 0.15s, box-shadow 0.2s; position: relative; overflow: hidden; }
+    .wrap-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(139,45,245,0.5); }
+    .wrap-cta-btn::after { content: ''; position: absolute; top: 0; left: -120%; width: 55%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent); transform: skewX(-15deg); }
+    .wrap-cta-btn:hover::after { animation: btnSwipe 0.38s ease forwards; }
+    @keyframes btnSwipe { from { left: -120%; } to { left: 160%; } }
+    @media (max-width: 600px) { .wrap-cta-inner { gap: 18px; } .wrap-cta-btn { width: 100%; text-align: center; } }
   </style>
 </head>
 <body>
@@ -341,6 +359,7 @@
     <a href="#gallery">Work</a>
     <a href="#reviews">Reviews</a>
     <a href="#contact">Contact</a>
+    <a href="vehicle-wrap.html" class="nav-wrap-link">Wrap Designer</a>
   </div>
   <div class="nav-right"><a href="#contact" class="nav-cta">⚡ Get a Quote</a></div>
 </nav>
@@ -387,6 +406,21 @@
     <img src="https://static.wixstatic.com/media/4591aa_3cb900a435df44bfbdcab20215e251f9~mv2.png/v1/crop/x_0,y_323,w_1387,h_573/fill/w_692,h_426,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/STORM%20SIGNS.png" alt="Storm Signs work" />
   </div>
 </div>
+
+
+<section class="wrap-cta-strip">
+  <div class="wrap-cta-inner">
+    <div class="wrap-cta-bolt" aria-hidden="true">
+      <svg width="38" height="64" viewBox="0 0 38 64"><path d="M28 0 L12 30 L22 30 L8 64 L26 32 L16 32 Z" fill="#F0F0AA" filter="url(#wcs-glow)"/><defs><filter id="wcs-glow"><feGaussianBlur stdDeviation="3" result="b"/><feFlood flood-color="#8b2df5" flood-opacity="0.9" result="c"/><feComposite in="c" in2="b" operator="in" result="s"/><feMerge><feMergeNode in="s"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs></svg>
+    </div>
+    <div class="wrap-cta-text">
+      <p class="wrap-cta-eye">NEW</p>
+      <h2>Try the Wrap Designer</h2>
+      <p class="wrap-cta-sub">Pick your vehicle, choose your colour and style — see your design before you commit to a quote</p>
+    </div>
+    <a href="vehicle-wrap.html" class="wrap-cta-btn">Design My Wrap &#9889;</a>
+  </div>
+</section>
 
 <div class="bolt-div"><span>⚡</span></div>
 
