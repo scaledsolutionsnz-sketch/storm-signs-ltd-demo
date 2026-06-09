@@ -287,6 +287,9 @@
     .google-badge .rating-num-sm { font-family: 'Saira',sans-serif; font-weight: 800; color: #fff; font-size: 1rem; }
     .google-badge .gstars { color: #f59e0b; letter-spacing: 0.04em; }
     .google-badge-text { color: var(--muted); }
+    .reviews-grid:not(.expanded) .extra-review { display: none; }
+    .reviews-more { text-align: center; margin-top: 2.75rem; }
+    .reviews-toggle { cursor: pointer; border: none; }
 
     /* ── CONTACT ── */
     .contact { padding: 7rem 2rem; background: var(--bg2); }
@@ -616,37 +619,250 @@
         <div class="rating-label">Based on 51 Google reviews</div>
       </div>
     </div>
-    <div class="reviews-grid">
+    <div class="reviews-grid" id="reviewsGrid">
       <div class="review-card reveal">
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Exceptional service and craftsmanship. Aaron and the team went above and beyond. The final result looked incredible and was delivered ahead of schedule."</p>
-        <div class="review-author"><div class="review-avatar">JB</div><div><div class="review-name">John B.</div><div class="review-date">Rolleston, Christchurch</div></div></div>
-      </div>
-      <div class="review-card reveal d1">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Professional from start to finish. The vehicle wrap for our fleet was flawless, precise, clean and exactly what we envisioned. Highly recommended."</p>
-        <div class="review-author"><div class="review-avatar">SK</div><div><div class="review-name">Sarah K.</div><div class="review-date">Christchurch</div></div></div>
-      </div>
-      <div class="review-card reveal d2">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Storm Signs handled our entire office fit-out with incredible attention to detail. The wayfinding system they designed is both functional and stunning."</p>
-        <div class="review-author"><div class="review-avatar">MT</div><div><div class="review-name">Mark T.</div><div class="review-date">Canterbury</div></div></div>
+        <p class="review-text">"Since starting my small business up 2 years ago I have been using Storm Signs Rolleston. Josh helped me with the business design and logo for our van. Nothing has ever been a problem even when I kept changing my mind on colours and designs."</p>
+        <div class="review-author"><div class="review-avatar">RH</div><div><div class="review-name">Rob Henderson</div><div class="review-date">a year ago</div></div></div>
       </div>
       <div class="review-card reveal">
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Top quality work and great communication the whole way through. Our new shopfront signage has had so many compliments already. Couldn't be happier."</p>
-        <div class="review-author"><div class="review-avatar">ER</div><div><div class="review-name">Emma R.</div><div class="review-date">Rolleston</div></div></div>
+        <p class="review-text">"Great team at Storm Signs, worked diligently and alongside us to produce high quality signage for our unit. Josh and the team are very flexible in meeting the demands of the clients and appreciate the back and forth to get things just right."</p>
+        <div class="review-author"><div class="review-avatar">JF</div><div><div class="review-name">Jake Faber</div><div class="review-date">10 months ago</div></div></div>
       </div>
-      <div class="review-card reveal d1">
+      <div class="review-card reveal">
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Fast turnaround on a big job without cutting a single corner. These guys know signage inside and out. We'll be using them for every site from now on."</p>
-        <div class="review-author"><div class="review-avatar">DW</div><div><div class="review-name">David W.</div><div class="review-date">Christchurch</div></div></div>
+        <p class="review-text">"Cannot fault Storm Signs Limited. Their staff are so friendly and helpful. Went to them with an idea which they brought to life and I couldn't be happier. The quality of the stickers is fantastic and I have had countless comments re the quality. So happy with their service, so much so that I'm back to order more. Highly recommended!"</p>
+        <div class="review-author"><div class="review-avatar">KT</div><div><div class="review-name">Kezia Tapsell</div><div class="review-date">a year ago</div></div></div>
       </div>
-      <div class="review-card reveal d2">
+      <div class="review-card reveal">
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">"From the quote right through to install the whole process was seamless. Genuinely the best signage company we have dealt with in Canterbury."</p>
-        <div class="review-author"><div class="review-avatar">PN</div><div><div class="review-name">Priya N.</div><div class="review-date">Selwyn</div></div></div>
+        <p class="review-text">"Excellent service. The team at Storm Signs was able to fit in my order at short notice and deliver in time. The quality is exactly what I expected. Highly recommending them! Shop local and support Selwyn business! Thank you from The Farm Vet :)"</p>
+        <div class="review-author"><div class="review-avatar">CD</div><div><div class="review-name">Codrut David</div><div class="review-date">3 years ago</div></div></div>
       </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"I recently had signage work done on my Nissan Elgrand for my DJ work vehicle by Storm Signs, and I couldn't be happier with the result! Josh was professional, friendly, and incredibly skilled. He took the time to understand my vision and nailed it."</p>
+        <div class="review-author"><div class="review-avatar">DG</div><div><div class="review-name">DJ Gideon</div><div class="review-date">a year ago</div></div></div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Picked up my sign for my small business and I'm so chuffed with it, looks better than I imagined. Amazing communication, great customer service. Thank you for having it ready in time. Fabulous!!!"</p>
+        <div class="review-author"><div class="review-avatar">DS</div><div><div class="review-name">Dominique Salter</div><div class="review-date">2 years ago</div></div></div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Outstanding prompt service and a quality product. Made the decals for my caravan while I waited and then fitted them as well. Very very happy 😊"</p>
+        <div class="review-author"><div class="review-avatar">LM</div><div><div class="review-name">Leah Mitchell</div><div class="review-date">2 years ago</div></div></div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Great to deal with, awesome customer service, easy to work with and quick. Would recommend 100 times over and would use again."</p>
+        <div class="review-author"><div class="review-avatar">EB</div><div><div class="review-name">Ella Blackett</div><div class="review-date">a year ago</div></div></div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Great guys, really friendly and happy to help. Did my boat decals while I waited. Great price as well. I will definitely be going back for more signage."</p>
+        <div class="review-author"><div class="review-avatar">NU</div><div><div class="review-name">Niven Upham</div><div class="review-date">2 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Fantastic service and awesome staff. Had a great car wrap designed through Storm Signs. They were super responsive with any questions I needed answering and provided a really good service and product. Highly recommend."</p>
+        <div class="review-author"><div class="review-avatar">EA</div><div><div class="review-name">Ella Addenbrooke</div><div class="review-date">a year ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Smooth and easy interactions with Josh Pritchard. Professional work. Understood my chaotic picture and produced a perfectly made sign in under 24hrs. Personal interactions were amazing and the end product was perfect."</p>
+        <div class="review-author"><div class="review-avatar">JM</div><div><div class="review-name">Junior Maiava</div><div class="review-date">a year ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Popped in to see the lads at Storm Signs Rolleston last week and they set me up with 2 sets of numbers for my new jetski in no time at all. Highly recommend Josh and his team to sort all your signage needs! Cheers, Jae Green."</p>
+        <div class="review-author"><div class="review-avatar">FG</div><div><div class="review-name">Fleur Green</div><div class="review-date">a year ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Amazing, friendly, helpful customer service and great price. We had vinyl stickers made to apply ourselves to our own old wooden sign. Aaron took the time to show how to apply the stickers and even offered 2 off-cuts of panel free of charge. Fully recommend!"</p>
+        <div class="review-author"><div class="review-avatar">AC</div><div><div class="review-name">A Cammock</div><div class="review-date">2 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Fantastic staff and incredible service. Handled a job for me in excellent time with an exceptional finish. Would 100% recommend to anyone after stickers or sign work."</p>
+        <div class="review-author"><div class="review-avatar">JM</div><div><div class="review-name">Jack MacPherson</div><div class="review-date">a year ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Excellent customer service. Prompt service, great price. The team at Storm Signs have loads of experience. The design team can help you create any artwork you want and will provide professional, honest advice."</p>
+        <div class="review-author"><div class="review-avatar">RC</div><div><div class="review-name">Ryan Clothier</div><div class="review-date">3 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"My experience in dealings with Storm Signs Limited on Jones Road in Rolleston, Canterbury, has been nothing short of an impressively first class service. Manager Josh Pritchard quickly understood how I might best utilise some signage."</p>
+        <div class="review-author"><div class="review-avatar">SL</div><div><div class="review-name">Stu Lee</div><div class="review-date">2 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Fantastic service! I have a very old vintage bike and he went above and beyond, which was highly appreciated!!"</p>
+        <div class="review-author"><div class="review-avatar">IG</div><div><div class="review-name">Ian Gardner</div><div class="review-date">3 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Josh did an amazing job on a very special plaque. The attention to detail was spectacular!! The turnaround time from arriving to designing to finished product was fantastic. Thank you for an end product that was perfect — the recipient of the plaque was beyond words."</p>
+        <div class="review-author"><div class="review-avatar">BT</div><div><div class="review-name">Brodie Ta'ala</div><div class="review-date">3 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Excellent customer service, very friendly, professional and prompt. The team really listen to what you want and come up with the perfect options. Excellent quality products, you will not be disappointed. Highly recommend you visit the team at Storm Signs."</p>
+        <div class="review-author"><div class="review-avatar">KM</div><div><div class="review-name">Kam Maihi</div><div class="review-date">3 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The crew at Storm Signs did such a fantastic job on the sign for my small business, despite me giving them an image that was tricky to reproduce due to size and format. Would 100% recommend for any of your signage needs!"</p>
+        <div class="review-author"><div class="review-avatar">AH</div><div><div class="review-name">Annalise Hall</div><div class="review-date">2 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"These guys are FANTASTIC! Nothing is a problem, they love their work and are exceptionally fastidious when applying their talent and imagination to a job. They always greet you with a smile — personable, yet professional."</p>
+        <div class="review-author"><div class="review-avatar">LH</div><div><div class="review-name">Lynda Harrap</div><div class="review-date">3 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Awesome service. Stopped in needing a sign made up urgently and Josh was a great help in design and print."</p>
+        <div class="review-author"><div class="review-avatar">ND</div><div><div class="review-name">Nathan Doel</div><div class="review-date">3 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Ordered multiple signs for work, but they really provide prompt, reliable and high quality service. Always happy to help. Honesty is great."</p>
+        <div class="review-author"><div class="review-avatar">MR</div><div><div class="review-name">Mitchell Rogers</div><div class="review-date">2 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Excellent customer service. Josh took care of everything, turnaround time was perfect. Highly recommended, Storm Signs Limited."</p>
+        <div class="review-author"><div class="review-avatar">PN</div><div><div class="review-name">Pepa Nisa</div><div class="review-date">3 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Very pleased with the signs, ready when they said they would be ready. Certainly good to deal with and being a local business is great. Look forward to dealing with them again. Rolleston &amp; Districts Lions Club."</p>
+        <div class="review-author"><div class="review-avatar">BW</div><div><div class="review-name">Brian Whittington</div><div class="review-date">3 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Was looking for a custom name sticker for the back of a softball helmet. The service was amazing, super quick and efficient, along with amazing and friendly customer service. Would highly recommend 👍"</p>
+        <div class="review-author"><div class="review-avatar">CH</div><div><div class="review-name">Caitlin Henderson</div><div class="review-date">3 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Josh is a legend!! I had no real idea what I wanted but he smashed it right out of my head onto my back window, and super fast."</p>
+        <div class="review-author"><div class="review-avatar">DA</div><div><div class="review-name">Danny</div><div class="review-date">a year ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Very professional and great communication. Product is affordable, high quality and exactly what I asked for. Highly recommended for your signage products."</p>
+        <div class="review-author"><div class="review-avatar">WM</div><div><div class="review-name">Will Murphy</div><div class="review-date">a year ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Hi guys, perfect job, thank you. Quality you don't often see anymore, and the price was more than fair. Recommend Storm Signs all day."</p>
+        <div class="review-author"><div class="review-avatar">GM</div><div><div class="review-name">Graeme Maxwell</div><div class="review-date">3 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Good customer service and Josh is a great guy to deal with."</p>
+        <div class="review-author"><div class="review-avatar">DB</div><div><div class="review-name">Darren Broadhurst</div><div class="review-date">10 months ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"We had some signage made up for our new factory. Incredibly fast turnaround and very friendly staff! Thanks Storm Signs."</p>
+        <div class="review-author"><div class="review-avatar">NB</div><div><div class="review-name">Nautilus Braids</div><div class="review-date">3 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Great service and friendly staff, providing excellent service. Work done was to upgrade our honours board for the Templeton RSA."</p>
+        <div class="review-author"><div class="review-avatar">BM</div><div><div class="review-name">Brendan Muir</div><div class="review-date">3 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Thanks to Josh of Storm Signs. Excellent work and really good to deal with. Would thoroughly recommend this business."</p>
+        <div class="review-author"><div class="review-avatar">AC</div><div><div class="review-name">Averil Carpenter</div><div class="review-date">3 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Absolutely amazing service. Highly recommend to everyone — if you need any signs or signage equipment this is the place to go ⭐⭐⭐⭐⭐"</p>
+        <div class="review-author"><div class="review-avatar">HG</div><div><div class="review-name">Haylee Gillan</div><div class="review-date">a year ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Great service, professional and fast. Recommend to all, fantastic company. Thank you so much. Great, well done!!!"</p>
+        <div class="review-author"><div class="review-avatar">ML</div><div><div class="review-name">Mike Lutter</div><div class="review-date">3 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Great sign made super quick. Very helpful and friendly service. Thanks."</p>
+        <div class="review-author"><div class="review-avatar">ME</div><div><div class="review-name">Mary Ellis</div><div class="review-date">a year ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Great service, attention to detail and fast turnaround with professional and friendly staff. Recommended local business."</p>
+        <div class="review-author"><div class="review-avatar">DH</div><div><div class="review-name">Daniel Hapuku</div><div class="review-date">2 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Wow, went there to get decals made. Awesome service, thanks Josh, I'll be back."</p>
+        <div class="review-author"><div class="review-avatar">LM</div><div><div class="review-name">Lindsay Montgomery</div><div class="review-date">a year ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Fantastic service all round — knowledgeable, helpful and friendly staff. Highly recommend."</p>
+        <div class="review-author"><div class="review-avatar">DA</div><div><div class="review-name">David</div><div class="review-date">2 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Awesome service. Signs look mint. Would highly recommend them."</p>
+        <div class="review-author"><div class="review-avatar">AM</div><div><div class="review-name">Ashley Miller</div><div class="review-date">3 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Excellent customer service and obviously great care taken in the detail."</p>
+        <div class="review-author"><div class="review-avatar">KY</div><div><div class="review-name">Kyle</div><div class="review-date">3 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Great customer service and very easy to use."</p>
+        <div class="review-author"><div class="review-avatar">FB</div><div><div class="review-name">Fletcher Begg</div><div class="review-date">a year ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Fantastic local service, very obliging, fast, friendly and professional."</p>
+        <div class="review-author"><div class="review-avatar">AK</div><div><div class="review-name">Adele King</div><div class="review-date">2 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"What a great team to deal with — very patient."</p>
+        <div class="review-author"><div class="review-avatar">HM</div><div><div class="review-name">Hana M</div><div class="review-date">a year ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Great service and quick turnaround, would recommend."</p>
+        <div class="review-author"><div class="review-avatar">KB</div><div><div class="review-name">Keegan Bulley</div><div class="review-date">3 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Awesome, fast and friendly. Thanks."</p>
+        <div class="review-author"><div class="review-avatar">PH</div><div><div class="review-name">Paul Harris</div><div class="review-date">2 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Quality work."</p>
+        <div class="review-author"><div class="review-avatar">BT</div><div><div class="review-name">Brian Tonkin</div><div class="review-date">2 years ago</div></div></div>
+      </div>
+      <div class="review-card extra-review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Quality workmanship. Did our courtesy cars at Kats Rolleston. Highly recommend."</p>
+        <div class="review-author"><div class="review-avatar">PG</div><div><div class="review-name">Phil Glen</div><div class="review-date">2 months ago</div></div></div>
+      </div>
+    </div>
+    <div class="reviews-more">
+      <button type="button" class="btn-primary reviews-toggle" id="reviewsToggle">Show all 48 reviews ⌄</button>
     </div>
     <div class="reviews-cta reveal">
       <a href="https://www.google.com/search?q=Storm+Signs+Ltd+Christchurch+reviews" target="_blank" rel="noopener" class="google-badge">
@@ -871,6 +1087,19 @@
     });
     card.addEventListener('mouseleave',()=>{card.style.transform='';});
   });
+</script>
+<script>
+  (function(){
+    var btn = document.getElementById('reviewsToggle');
+    var grid = document.getElementById('reviewsGrid');
+    if (btn && grid) {
+      btn.addEventListener('click', function(){
+        var open = grid.classList.toggle('expanded');
+        btn.innerHTML = open ? 'Show fewer reviews ⌃' : 'Show all 51 reviews ⌄';
+        if (!open) grid.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    }
+  })();
 </script>
 </body>
 </html>
